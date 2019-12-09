@@ -27,3 +27,11 @@ doc/api/
 flutter_architecture_sample.iml
 
 .idea/
+
+ios/.symlinks/
+
+ios/Pods/
+
+ios/Podfile.lock
+
+.flutter-plugins
