@@ -25,13 +25,29 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       child: BlocWidgetBuilder<HomeBloc, HomeState>(
         builder: (context, bloc, state) {
-          String title =
+          final title =
               state.username != null ? "Welcome ${state.username}" : "Home";
+          final userLoggedIn = state.id == HomeStateId.DoneLoading;
+
           return Scaffold(
             appBar: AppBar(
               title: Text(title),
             ),
-            body: Container(),
+            body: Container(
+              margin: EdgeInsets.symmetric(horizontal: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  if (userLoggedIn)
+                    RaisedButton(
+                      child: Text("Logout"),
+                      onPressed: () {
+                        bloc.onUserLogout();
+                      },
+                    )
+                ],
+              ),
+            ),
           );
         },
       ),

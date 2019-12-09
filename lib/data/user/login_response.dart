@@ -4,11 +4,13 @@
 
 import 'dart:convert';
 
+import 'package:flutter_architecture_sample/data/base/parser.dart';
+import 'package:flutter_architecture_sample/data/database/entity.dart';
 import 'package:flutter_architecture_sample/data/network/request_status.dart';
 
 class LoginResponse {
   final RequestStatus error;
-  final UserInfoDTO data;
+  final UserInfo data;
 
   LoginResponse({
     this.error,
@@ -24,7 +26,7 @@ class LoginResponse {
         error: json["error"] == null
             ? null
             : RequestStatus.fromJson(json["error"]),
-        data: json["data"] == null ? null : UserInfoDTO.fromJson(json["data"]),
+        data: json["data"] == null ? null : UserInfo.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -33,27 +35,30 @@ class LoginResponse {
       };
 }
 
-class UserInfoDTO {
-  final dynamic token;
-  final dynamic name;
+class UserInfo extends Entity {
+  final String token;
+  final String name;
 
-  UserInfoDTO({
+  UserInfo({
+    int id,
     this.token,
     this.name,
-  });
+  }) : super(id: id);
 
-  factory UserInfoDTO.fromRawJson(String str) =>
-      UserInfoDTO.fromJson(json.decode(str));
+  factory UserInfo.fromRawJson(String str) =>
+      UserInfo.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory UserInfoDTO.fromJson(Map<String, dynamic> json) => UserInfoDTO(
-        token: json["token"] == null ? null : json["token"],
-        name: json["name"] == null ? null : json["name"],
+  factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
+        id: json["id"] == null ? null : parseInt(json["id"]),
+        token: json["token"] == null ? null : parseString(json["token"]),
+        name: json["name"] == null ? null : parseString(json["name"]),
       );
 
   Map<String, dynamic> toJson() => {
         "token": token == null ? null : token,
         "name": name == null ? null : name,
+        "id": id == null ? null : id,
       };
 }

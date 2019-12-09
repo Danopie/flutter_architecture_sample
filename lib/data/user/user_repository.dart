@@ -1,8 +1,8 @@
 import 'package:flutter_architecture_sample/data/base/repository.dart';
 import 'package:flutter_architecture_sample/data/base/result.dart';
+import 'package:flutter_architecture_sample/data/user/login_response.dart';
 import 'package:flutter_architecture_sample/data/user/user_api.dart';
-import 'package:flutter_architecture_sample/data/user/user_dao.dart';
-import 'package:flutter_architecture_sample/data/user/user_info.dart';
+import 'package:flutter_architecture_sample/data/user/user_db.dart';
 
 class UserRepository extends Repository {
   final UserApiProvider _userApiService;

@@ -13,14 +13,17 @@ class HomeBloc extends Bloc<HomeState> {
         update(latestState.copyWith(id: HomeStateId.NeedLogin));
       } else if (userState.id == UserStateId.LoggedIn) {
         update(latestState.copyWith(
-            id: HomeStateId.DoneLoading,
-            username: userState.userInfo.username));
+            id: HomeStateId.DoneLoading, username: userState.userInfo.name));
       }
     });
   }
 
   @override
   HomeState get initialState => HomeState(id: HomeStateId.Loading);
+
+  void onUserLogout() {
+    _userBloc.onUserLogout();
+  }
 }
 
 class HomeState {

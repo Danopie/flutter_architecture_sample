@@ -1,4 +1,4 @@
-import 'package:flutter_architecture_sample/data/user/user_info.dart';
+import 'package:flutter_architecture_sample/data/user/login_response.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
 
@@ -24,6 +24,11 @@ class UserBloc extends Bloc<UserState> {
   void onUserLoginSuccessful(UserInfo userInfo) {
     _userRepository.saveUserInfo(userInfo);
     update(latestState.copyWith(id: UserStateId.LoggedIn, userInfo: userInfo));
+  }
+
+  void onUserLogout() {
+    _userRepository.clearUserInfo();
+    update(latestState.copyWith(id: UserStateId.NotLoggedIn));
   }
 }
 

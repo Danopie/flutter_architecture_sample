@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_sample/data/user/user_api.dart';
-import 'package:flutter_architecture_sample/data/user/user_dao.dart';
+import 'package:flutter_architecture_sample/data/user/user_db.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
 import 'package:flutter_architecture_sample/ui/router.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
@@ -13,9 +13,9 @@ void main() {
 }
 
 void setupDI() {
-  GetIt.instance.registerLazySingleton(() => UserApiProvider());
-  GetIt.instance.registerLazySingleton(() => UserDatabaseProvider());
-  GetIt.instance.registerLazySingleton(() => UserRepository(
+  GetIt.I.registerLazySingleton(() => UserApiProvider());
+  GetIt.I.registerLazySingleton(() => UserDatabaseProvider());
+  GetIt.I.registerLazySingleton(() => UserRepository(
       GetIt.I.get<UserApiProvider>(), GetIt.I.get<UserDatabaseProvider>()));
 }
 

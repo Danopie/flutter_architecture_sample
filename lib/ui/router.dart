@@ -22,7 +22,7 @@ class Router {
   }
 
   static PageRoute _buildRoute(Widget child) {
-    return CupertinoPageRoute(builder: (_) => child);
+    return CustomPageRoute(widget: child);
   }
 
   static String get initialRoute => ScreenNames.Home;
@@ -39,4 +39,26 @@ class Router {
 class ScreenNames {
   static const Home = "/";
   static const Login = "/login";
+}
+
+class CustomPageRoute extends PageRouteBuilder {
+  final Widget widget;
+  CustomPageRoute({this.widget})
+      : super(pageBuilder: (BuildContext context, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return widget;
+        }, transitionsBuilder: (BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child) {
+          return FadeTransition(
+            opacity:
+                CurvedAnimation(curve: Curves.fastOutSlowIn, parent: animation),
+            child: ScaleTransition(
+              scale:
+                  CurvedAnimation(curve: Curves.decelerate, parent: animation),
+              child: child,
+            ),
+          );
+        });
 }

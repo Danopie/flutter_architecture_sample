@@ -2,7 +2,6 @@ import 'package:flutter_architecture_sample/data/base/exception.dart';
 import 'package:flutter_architecture_sample/data/network/api_path.dart';
 import 'package:flutter_architecture_sample/data/network/api_provider.dart';
 import 'package:flutter_architecture_sample/data/user/login_response.dart';
-import 'package:flutter_architecture_sample/data/user/user_info.dart';
 
 class UserApiProvider extends ApiProvider {
   UserApiProvider() : super(EndPoint.MAIN);
@@ -19,7 +18,7 @@ class UserApiProvider extends ApiProvider {
 
     final loginRes = LoginResponse.fromRawJson(res);
     if (loginRes.error.isSuccessful) {
-      return UserInfoMapper().map(loginRes.data);
+      return loginRes.data;
     } else {
       throw ServerException(loginRes.error.message);
     }
