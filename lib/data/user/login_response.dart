@@ -4,9 +4,9 @@
 
 import 'dart:convert';
 
-import 'package:flutter_architecture_sample/data/base/parser.dart';
 import 'package:flutter_architecture_sample/data/database/entity.dart';
 import 'package:flutter_architecture_sample/data/network/request_status.dart';
+import 'package:primitive_type_parser/primitive_type_parser.dart';
 
 class LoginResponse {
   final RequestStatus error;
@@ -38,11 +38,13 @@ class LoginResponse {
 class UserInfo extends Entity {
   final String token;
   final String name;
+  final List<String> genders;
 
   UserInfo({
     int id,
     this.token,
     this.name,
+    this.genders,
   }) : super(id: id);
 
   factory UserInfo.fromRawJson(String str) =>
@@ -61,4 +63,20 @@ class UserInfo extends Entity {
         "name": name == null ? null : name,
         "id": id == null ? null : id,
       };
+
+  Map<String, dynamic> toMap() {
+    return {
+      'token': this.token,
+      'name': this.name,
+      'genders': this.genders,
+    };
+  }
+
+  factory UserInfo.fromMap(Map<String, dynamic> map) {
+    return UserInfo(
+      token: map['token'] as String,
+      name: map['name'] as String,
+      genders: map['genders'] as List<String>,
+    );
+  }
 }

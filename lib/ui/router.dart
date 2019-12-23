@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_sample/ui/deeplink/deep_link_screen.dart';
 import 'package:flutter_architecture_sample/ui/home/home_screen.dart';
 import 'package:flutter_architecture_sample/ui/login/login_screen.dart';
 
@@ -9,11 +10,14 @@ class Router {
   static NavigatorState get navigator => navigatorKey.currentState;
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    print('Router.generateRoute: ${settings.name}');
     switch (settings.name) {
       case ScreenNames.Home:
         return _buildRoute(HomeScreen.newInstance());
       case ScreenNames.Login:
         return _buildRoute(LoginScreen.newInstance());
+      case ScreenNames.DeepLink:
+        return _buildRoute(DeepLinkScreen(link: settings.arguments as String));
       default:
         return _buildRoute(Scaffold(
           body: Center(child: Text('No route defined for ${settings.name}')),
@@ -28,7 +32,7 @@ class Router {
   static String get initialRoute => ScreenNames.Home;
 
   static Future<dynamic> push(String name, {Object arguments}) async {
-    return await navigator.pushNamed(ScreenNames.Login, arguments: arguments);
+    return await navigator.pushNamed(name, arguments: arguments);
   }
 
   static void pop([dynamic result]) {
@@ -39,6 +43,7 @@ class Router {
 class ScreenNames {
   static const Home = "/";
   static const Login = "/login";
+  static const DeepLink = "/deeplink";
 }
 
 class CustomPageRoute extends PageRouteBuilder {

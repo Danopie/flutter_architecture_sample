@@ -42,7 +42,7 @@ String loginSuccessJson = '''
   },
   "data": {
     "token": "sfawefwefaf",
-    "name": "Le Dan"
+    "name": "Dan Le"
   }
 }
 ''';
