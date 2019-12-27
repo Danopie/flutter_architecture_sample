@@ -12,7 +12,7 @@ class UserBloc extends Bloc<UserState> {
     final result = await _userRepository.getUserInfo();
     if (result.data != null) {
       update(latestState.copyWith(
-          id: UserStateId.LoggedIn, userInfo: result.data));
+          id: UserStateId.LoggedIn, userInfo: Nullable(result.data)));
     } else {
       update(latestState.copyWith(id: UserStateId.NotLoggedIn));
     }
@@ -23,12 +23,14 @@ class UserBloc extends Bloc<UserState> {
 
   void onUserLoginSuccessful(UserInfo userInfo) {
     _userRepository.saveUserInfo(userInfo);
-    update(latestState.copyWith(id: UserStateId.LoggedIn, userInfo: userInfo));
+    update(latestState.copyWith(
+        id: UserStateId.LoggedIn, userInfo: Nullable(userInfo)));
   }
 
   void onUserLogout() {
     _userRepository.clearUserInfo();
-    update(latestState.copyWith(id: UserStateId.NotLoggedIn));
+    update(latestState.copyWith(
+        id: UserStateId.NotLoggedIn, userInfo: Nullable(null)));
   }
 }
 
@@ -43,12 +45,17 @@ class UserState {
 
   UserState copyWith({
     UserStateId id,
-    UserInfo userInfo,
+    Nullable<UserInfo> userInfo,
   }) {
     return UserState(
       id: id ?? this.id,
-      userInfo: userInfo ?? this.userInfo,
+      userInfo: userInfo != null ? userInfo.value : this.userInfo,
     );
+  }
+
+  @override
+  String toString() {
+    return 'UserState{id: $id, userInfo: $userInfo}';
   }
 }
 

@@ -11,7 +11,7 @@ class LoginBloc extends Bloc<LoginState> {
   @override
   void init() {}
 
-  void onUserLogin(String username, String password) async {
+  Future onUserLogin(String username, String password) async {
     update(latestState.copyWith(id: LoginStateId.Loading));
     final result = await _userRepository.login(username, password);
     if (result.isSuccessful) {
@@ -44,6 +44,11 @@ class LoginState {
       id: id ?? this.id,
       error: error ?? this.error,
     );
+  }
+
+  @override
+  String toString() {
+    return 'LoginState{id: $id, error: $error}';
   }
 }
 
