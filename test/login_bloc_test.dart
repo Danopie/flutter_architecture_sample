@@ -27,7 +27,7 @@ void main() {
     sut.dispose();
   });
 
-  test("LoginBloc initial state is idle", () {
+  test("LoginBloc_Should be idle on init", () {
     sut.init();
     expect(
         sut.stateStream,
@@ -36,7 +36,9 @@ void main() {
         ]));
   });
 
-  test("LoginBloc can login", () async {
+  test(
+      "LoginBloc_Should emits login successful_When user login with correct user name and password",
+      () async {
     final username = "danle257";
     final password = "123456";
     final userInfo = UserInfo(name: "dan le", token: "dfasfads");
@@ -62,7 +64,8 @@ void main() {
     verify(userBloc.onUserLoginSuccessful(userInfo)).called(1);
   }, timeout: Timeout(Duration(seconds: 5)));
 
-  test("LoginBloc show error on login failed", () async {
+  test("LoginBloc_Should show emits error and reset to idle_When login failed",
+      () async {
     final error = "Error";
 
     when(userRepository.login(any, any))

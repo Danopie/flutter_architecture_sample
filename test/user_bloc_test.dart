@@ -21,7 +21,7 @@ void main() {
     sut.dispose();
   });
 
-  test("UserBloc initial state is loading", () {
+  test("UserBloc_Should be in Loading_Before init", () {
     expectLater(
         sut.stateStream,
         emitsInOrder([
@@ -32,7 +32,8 @@ void main() {
     sut.dispose();
   });
 
-  test("User can login from cached info", () async {
+  test("UserBloc_Should emits login successful_When it has cached user info",
+      () async {
     final userInfo = UserInfo(name: "dan le", token: "dfasfads");
 
     when(userRepository.getUserInfo())
@@ -55,7 +56,8 @@ void main() {
     sut.dispose();
   });
 
-  test("Initial user state is anonymous without cached info", () async {
+  test("UserBloc_Should emits not logged in_When cached info is empty",
+      () async {
     when(userRepository.getUserInfo())
         .thenAnswer((_) => Future.value(Result.failure()));
 
@@ -73,7 +75,8 @@ void main() {
     sut.init();
   });
 
-  test("User can logout", () async {
+  test("UserBloc_Should emits not logged in_When logout while having user info",
+      () async {
     final userInfo = UserInfo(name: "dan le", token: "dfasfads");
 
     when(userRepository.getUserInfo())
@@ -102,7 +105,8 @@ void main() {
     verify(userRepository.clearUserInfo()).called(1);
   });
 
-  test("UserBloc can save user info on login successful", () async {
+  test("UserBloc_Should emits LoginSuccesful_When user login successful",
+      () async {
     final userInfo = UserInfo(name: "dan le", token: "dfasfads");
 
     when(userRepository.getUserInfo())
