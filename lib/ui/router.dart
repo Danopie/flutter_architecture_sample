@@ -10,23 +10,28 @@ class Router {
   static NavigatorState get navigator => navigatorKey.currentState;
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    print('Router.generateRoute: ${settings.name}');
+    Widget widget;
     switch (settings.name) {
       case ScreenNames.Home:
-        return _buildRoute(HomeScreen.newInstance());
+        widget = HomeScreen.newInstance();
+        break;
       case ScreenNames.Login:
-        return _buildRoute(LoginScreen.newInstance());
+        widget = LoginScreen.newInstance();
+        break;
       case ScreenNames.DeepLink:
-        return _buildRoute(DeepLinkScreen(link: settings.arguments as String));
+        widget = DeepLinkScreen(link: settings.arguments as String);
+        break;
       default:
-        return _buildRoute(Scaffold(
+        widget = Scaffold(
           body: Center(child: Text('No route defined for ${settings.name}')),
-        ));
+        );
+        break;
     }
+    return _buildRoute(widget, settings);
   }
 
-  static PageRoute _buildRoute(Widget child) {
-    return CustomPageRoute(widget: child);
+  static PageRoute _buildRoute(Widget child, RouteSettings settings) {
+    return CustomPageRoute(widget: child, settings: settings);
   }
 
   static String get initialRoute => ScreenNames.Home;
@@ -48,22 +53,27 @@ class ScreenNames {
 
 class CustomPageRoute extends PageRouteBuilder {
   final Widget widget;
-  CustomPageRoute({this.widget})
-      : super(pageBuilder: (BuildContext context, Animation<double> animation,
-            Animation<double> secondaryAnimation) {
-          return widget;
-        }, transitionsBuilder: (BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child) {
-          return FadeTransition(
-            opacity:
-                CurvedAnimation(curve: Curves.fastOutSlowIn, parent: animation),
-            child: ScaleTransition(
-              scale:
-                  CurvedAnimation(curve: Curves.decelerate, parent: animation),
-              child: child,
-            ),
-          );
-        });
+  final RouteSettings settings;
+
+  CustomPageRoute({this.widget, this.settings})
+      : super(
+            settings: settings,
+            pageBuilder: (BuildContext context, Animation<double> animation,
+                Animation<double> secondaryAnimation) {
+              return widget;
+            },
+            transitionsBuilder: (BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation,
+                Widget child) {
+              return FadeTransition(
+                opacity: CurvedAnimation(
+                    curve: Curves.fastOutSlowIn, parent: animation),
+                child: ScaleTransition(
+                  scale: CurvedAnimation(
+                      curve: Curves.decelerate, parent: animation),
+                  child: child,
+                ),
+              );
+            });
 }

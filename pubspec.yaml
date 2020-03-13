@@ -30,7 +30,7 @@ dependencies:
   meta: any
   get_it: ^3.0.3
   sqflite: ^1.1.7+3
-  primitive_type_parser: ^0.0.1
+  primitive_type_parser: ^0.0.2
   uni_links: ^0.2.0
 
 dev_dependencies:

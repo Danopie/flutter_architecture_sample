@@ -11,7 +11,6 @@ class DeepLinkBloc extends Bloc<DeepLinkState> {
   void init() async {
     try {
       String initialLink = await getInitialLink();
-      print('DeepLinkBloc.init: ${initialLink}');
       if (initialLink != null) {
         _handleNewLink(initialLink);
       }
