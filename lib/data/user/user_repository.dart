@@ -3,7 +3,9 @@ import 'package:flutter_architecture_sample/data/base/result.dart';
 import 'package:flutter_architecture_sample/data/user/login_response.dart';
 import 'package:flutter_architecture_sample/data/user/user_api.dart';
 import 'package:flutter_architecture_sample/data/user/user_db.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class UserRepository extends Repository {
   final UserApiProvider _userApiService;
   final UserDatabaseProvider _userDao;

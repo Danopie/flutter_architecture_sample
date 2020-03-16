@@ -1,6 +1,8 @@
 import 'package:flutter_architecture_sample/data/database/database_provider.dart';
 import 'package:flutter_architecture_sample/data/user/login_response.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class UserDatabaseProvider extends DatabaseProvider {
   @override
   String get createTableScript => '''
