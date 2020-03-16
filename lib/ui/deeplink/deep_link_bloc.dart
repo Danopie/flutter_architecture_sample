@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_architecture_sample/ui/router.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
 import 'package:uni_links/uni_links.dart';
+
+part '../../generated/deep_link_bloc.freezed.dart';
 
 class DeepLinkBloc extends Bloc<DeepLinkState> {
   StreamSubscription _sub;
@@ -28,7 +31,7 @@ class DeepLinkBloc extends Bloc<DeepLinkState> {
   }
 
   @override
-  DeepLinkState get initialState => DeepLinkState(id: DeepLinkState.LOADING);
+  DeepLinkState get initialState => DeepLinkState.loading();
 
   @override
   void dispose() {
@@ -48,30 +51,14 @@ class DeepLinkBloc extends Bloc<DeepLinkState> {
     if (routeName != null && routeName.isNotEmpty) {
       Router.push("/$routeName", arguments: routeName);
 
-      update(latestState.copyWith(
-          id: DeepLinkState.DONE_LOADING, routeName: routeName));
+      update(DeepLinkState.doneLoading(routeName: routeName));
     }
   }
 }
 
-class DeepLinkState {
-  static const LOADING = 0;
-  static const DONE_LOADING = 1;
-  final int id;
-  final String routeName;
-
-  const DeepLinkState({
-    this.id,
-    this.routeName,
-  });
-
-  DeepLinkState copyWith({
-    int id,
-    String routeName,
-  }) {
-    return DeepLinkState(
-      id: id ?? this.id,
-      routeName: routeName ?? this.routeName,
-    );
-  }
+@freezed
+abstract class DeepLinkState with _$DeepLinkState {
+  const factory DeepLinkState.loading() = DeepLinkLoading;
+  const factory DeepLinkState.doneLoading({String routeName}) =
+      DeepLinkDoneLoading;
 }

@@ -1,6 +1,8 @@
 import 'package:flutter_architecture_sample/data/user/login_response.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
+part '../../generated/user_bloc.freezed.dart';
 
 class UserBloc extends Bloc<UserState> {
   final UserRepository _userRepository;
@@ -12,52 +14,32 @@ class UserBloc extends Bloc<UserState> {
     final result = await _userRepository.getUserInfo();
 
     result.maybeWhen(orElse: () {
-      update(latestState.copyWith(id: UserStateId.NotLoggedIn));
+      update(UserState.notLoggedIn());
     }, success: (data) {
-      update(latestState.copyWith(
-          id: UserStateId.LoggedIn, userInfo: Nullable(data)));
+      update(UserState.loggedIn(userInfo: data));
     });
   }
 
   @override
-  UserState get initialState => UserState(id: UserStateId.Loading);
+  UserState get initialState => UserState.loading();
 
   void onUserLoginSuccessful(UserInfo userInfo) {
     _userRepository.saveUserInfo(userInfo);
-    update(latestState.copyWith(
-        id: UserStateId.LoggedIn, userInfo: Nullable(userInfo)));
+    update(UserState.loggedIn(userInfo: userInfo));
+
   }
 
   void onUserLogout() {
     _userRepository.clearUserInfo();
-    update(latestState.copyWith(
-        id: UserStateId.NotLoggedIn, userInfo: Nullable(null)));
+    update(UserState.notLoggedIn());
   }
 }
 
-class UserState {
-  final UserStateId id;
-  final UserInfo userInfo;
 
-  const UserState({
-    this.id,
-    this.userInfo,
-  });
-
-  UserState copyWith({
-    UserStateId id,
-    Nullable<UserInfo> userInfo,
-  }) {
-    return UserState(
-      id: id ?? this.id,
-      userInfo: userInfo != null ? userInfo.value : this.userInfo,
-    );
-  }
-
-  @override
-  String toString() {
-    return 'UserState{id: $id, userInfo: $userInfo}';
-  }
+@freezed
+abstract class UserState with _$UserState {
+  const factory UserState.loggedIn({UserInfo userInfo}) = UserLoggedIn;
+  const factory UserState.loading() = UserLoading;
+  const factory UserState.notLoggedIn() = UserNotLoggedIn;
 }
 
-enum UserStateId { Loading, LoggedIn, NotLoggedIn }

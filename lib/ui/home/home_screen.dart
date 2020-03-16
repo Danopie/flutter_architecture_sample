@@ -19,15 +19,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BlocListener<HomeBloc, HomeState>(
       listener: (_, __, state) {
-        if (state.id == HomeStateId.NeedLogin) {
+        if (state is HomeNeedLogin) {
           Router.push(ScreenNames.Login);
         }
       },
       child: BlocWidgetBuilder<HomeBloc, HomeState>(
         builder: (context, bloc, state) {
-          final title =
-              state.username != null ? "Welcome ${state.username}" : "Home";
-          final userLoggedIn = state.id == HomeStateId.DoneLoading;
+          final title = state.maybeWhen<String>(
+              orElse: () => "Home",
+              doneLoading: (username) => "Welcome ${username}");
+
+          final userLoggedIn = state is HomeDoneLoading;
 
           return Scaffold(
             appBar: AppBar(

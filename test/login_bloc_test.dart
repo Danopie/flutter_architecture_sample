@@ -32,7 +32,7 @@ void main() {
     expect(
         sut.stateStream,
         emitsInOrder([
-          predicate<LoginState>((state) => state.id == LoginStateId.Idle),
+          predicate<LoginState>((state) => state is LoginIdle),
         ]));
   });
 
@@ -49,13 +49,10 @@ void main() {
     expectLater(
         sut.stateStream,
         emitsInOrder([
+          predicate<LoginState>((state) => state is LoginIdle, "In idle"),
+          predicate<LoginState>((state) => state is LoginLoading, "Logging in"),
           predicate<LoginState>(
-              (state) => state.id == LoginStateId.Idle, "In idle"),
-          predicate<LoginState>(
-              (state) => state.id == LoginStateId.Loading, "Logging in"),
-          predicate<LoginState>(
-              (state) => state.id == LoginStateId.LoginSuccessful,
-              "Login sucessful"),
+              (state) => state is LoginSuccessful, "Login sucessful"),
         ]));
 
     await sut.init();
@@ -74,12 +71,10 @@ void main() {
     expectLater(
         sut.stateStream,
         emitsInOrder([
+          predicate<LoginState>((state) => state is LoginIdle, "In idle"),
+          predicate<LoginState>((state) => state is LoginLoading, "Logging in"),
           predicate<LoginState>(
-              (state) => state.id == LoginStateId.Idle, "In idle"),
-          predicate<LoginState>(
-              (state) => state.id == LoginStateId.Loading, "Logging in"),
-          predicate<LoginState>(
-              (state) => state.id == LoginStateId.Idle && state.error == error,
+              (state) => state is LoginIdle && state.error == error,
               "Login failed"),
         ]));
 

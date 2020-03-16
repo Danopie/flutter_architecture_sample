@@ -12,7 +12,11 @@ class UserRepository extends Repository {
 
   Future<Result<UserInfo>> getUserInfo() async {
     final userInfo = await _userDao.getUserInfo();
-    return Result<UserInfo>.success(userInfo);
+    if(userInfo != null){
+      return Result<UserInfo>.success(userInfo);
+    } else {
+      return Result.failure();
+    }
   }
 
   Future<void> clearUserInfo() async {

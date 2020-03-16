@@ -1,5 +1,7 @@
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
+part 'home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeState> {
   final UserBloc _userBloc;
@@ -9,41 +11,28 @@ class HomeBloc extends Bloc<HomeState> {
   @override
   void init() {
     _userBloc.stateStream.listen((userState) {
-      if (userState.id == UserStateId.NotLoggedIn) {
-        update(latestState.copyWith(id: HomeStateId.NeedLogin));
-      } else if (userState.id == UserStateId.LoggedIn) {
-        update(latestState.copyWith(
-            id: HomeStateId.DoneLoading, username: userState.userInfo.name));
-      }
+      userState.when(
+          loggedIn: (userInfo) {
+            update((HomeState.doneLoading(username: userInfo.name)));
+          },
+          loading: () {},
+          notLoggedIn: () {
+            update(HomeState.needLogin());
+          });
     });
   }
 
   @override
-  HomeState get initialState => HomeState(id: HomeStateId.Loading);
+  HomeState get initialState => HomeState.loading();
 
   void onUserLogout() {
     _userBloc.onUserLogout();
   }
 }
 
-class HomeState {
-  final HomeStateId id;
-  final String username;
-
-  const HomeState({
-    this.id,
-    this.username,
-  });
-
-  HomeState copyWith({
-    HomeStateId id,
-    String username,
-  }) {
-    return HomeState(
-      id: id ?? this.id,
-      username: username ?? this.username,
-    );
-  }
+@freezed
+abstract class HomeState with _$HomeState {
+  const factory HomeState.loading() = HomeLoading;
+  const factory HomeState.doneLoading({String username}) = HomeDoneLoading;
+  const factory HomeState.needLogin() = HomeNeedLogin;
 }
-
-enum HomeStateId { Loading, DoneLoading, NeedLogin }

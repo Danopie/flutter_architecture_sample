@@ -34,9 +34,9 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         body: BlocListener<LoginBloc, LoginState>(
           listener: (_, bloc, state) {
-            if (state.id == LoginStateId.LoginSuccessful) {
+            state.maybeWhen(orElse: (){}, success: (){
               Router.pop();
-            }
+            });
           },
           child: BlocWidgetBuilder<LoginBloc, LoginState>(
             builder: (_, bloc, state) {
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Container(
                       height: 12,
                     ),
-                    if (state.id == LoginStateId.Idle &&
+                    if (state is LoginIdle &&
                         state.error != null &&
                         state.error.isNotEmpty) ...[
                       Container(
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 12,
                       ),
                     ],
-                    if (state.id == LoginStateId.Idle)
+                    if (state is LoginIdle)
                       RaisedButton(
                         child: Text("Login"),
                         onPressed: () {

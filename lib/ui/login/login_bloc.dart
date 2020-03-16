@@ -1,7 +1,9 @@
 import 'package:flutter_architecture_sample/data/base/result.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
+part '../../generated/login_bloc.freezed.dart';
 
 class LoginBloc extends Bloc<LoginState> {
   final UserRepository _userRepository;
@@ -13,44 +15,25 @@ class LoginBloc extends Bloc<LoginState> {
   void init() {}
 
   Future onUserLogin(String username, String password) async {
-    update(latestState.copyWith(id: LoginStateId.Loading));
+    update(LoginState.loading());
     final result = await _userRepository.login(username, password);
 
     result.when(success: (data) {
       _userBloc.onUserLoginSuccessful(data);
-      update(latestState.copyWith(id: LoginStateId.LoginSuccessful));
+      update(LoginState.success());
     }, failure: (msg, exception) {
-      update(latestState.copyWith(id: LoginStateId.Idle, error: msg));
+      update(LoginState.idle(error: msg));
     });
   }
 
   @override
-  LoginState get initialState => LoginState(id: LoginStateId.Idle);
+  LoginState get initialState => LoginState.idle();
 }
 
-class LoginState {
-  final LoginStateId id;
-  final String error;
-
-  const LoginState({
-    this.id,
-    this.error,
-  });
-
-  LoginState copyWith({
-    LoginStateId id,
-    String error,
-  }) {
-    return LoginState(
-      id: id ?? this.id,
-      error: error ?? this.error,
-    );
-  }
-
-  @override
-  String toString() {
-    return 'LoginState{id: $id, error: $error}';
-  }
+@freezed
+abstract class LoginState with _$LoginState {
+  const factory LoginState.idle({String error}) = LoginIdle;
+  const factory LoginState.loading() = LoginLoading;
+  const factory LoginState.success() = LoginSuccessful;
 }
 
-enum LoginStateId { Idle, Loading, LoginSuccessful }

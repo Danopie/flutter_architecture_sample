@@ -25,8 +25,7 @@ void main() {
     expectLater(
         sut.stateStream,
         emitsInOrder([
-          predicate<UserState>(
-              (state) => state.id == UserStateId.Loading, "Loading user"),
+          predicate<UserState>((state) => state is UserLoading, "Loading user"),
           emitsDone
         ]));
     sut.dispose();
@@ -42,12 +41,9 @@ void main() {
     expectLater(
         sut.stateStream,
         emitsInOrder([
+          predicate<UserState>((state) => state is UserLoading, "Loading user"),
           predicate<UserState>(
-              (state) => state.id == UserStateId.Loading, "Loading user"),
-          predicate<UserState>(
-              (state) =>
-                  state.id == UserStateId.LoggedIn &&
-                  state.userInfo == userInfo,
+              (state) => state is UserLoggedIn && state.userInfo == userInfo,
               "Loading user"),
           emitsDone
         ]));
@@ -64,12 +60,9 @@ void main() {
     expectLater(
         sut.stateStream,
         emitsInOrder([
+          predicate<UserState>((state) => state is UserLoading, "Loading user"),
           predicate<UserState>(
-              (state) => state.id == UserStateId.Loading, "Loading user"),
-          predicate<UserState>(
-              (state) =>
-                  state.id == UserStateId.NotLoggedIn && state.userInfo == null,
-              "Loading user"),
+              (state) => state is UserNotLoggedIn, "Loading user"),
         ]));
 
     sut.init();
@@ -85,16 +78,11 @@ void main() {
     expectLater(
         sut.stateStream,
         emitsInOrder([
+          predicate<UserState>((state) => state is UserLoading, "Loading user"),
           predicate<UserState>(
-              (state) => state.id == UserStateId.Loading, "Loading user"),
-          predicate<UserState>(
-              (state) =>
-                  state.id == UserStateId.LoggedIn &&
-                  state.userInfo == userInfo,
+              (state) => state is UserLoggedIn && state.userInfo == userInfo,
               "User is logged in"),
-          predicate<UserState>(
-              (state) =>
-                  state.id == UserStateId.NotLoggedIn && state.userInfo == null,
+          predicate<UserState>((state) => state is UserNotLoggedIn,
               "User is not logged in and doesn't have user info"),
         ]));
 
@@ -110,21 +98,16 @@ void main() {
     final userInfo = UserInfo(name: "dan le", token: "dfasfads");
 
     when(userRepository.getUserInfo())
-        .thenAnswer((_) => Future.value(Result.success(null)));
+        .thenAnswer((_) => Future.value(Result.success(userInfo)));
 
     expectLater(
         sut.stateStream,
         emitsInOrder([
+          predicate<UserState>((state) => state is UserLoading, "Loading user"),
           predicate<UserState>(
-              (state) => state.id == UserStateId.Loading, "Loading user"),
+              (state) => state is UserNotLoggedIn, "User is not logged in"),
           predicate<UserState>(
-              (state) =>
-                  state.id == UserStateId.NotLoggedIn && state.userInfo == null,
-              "User is not logged in"),
-          predicate<UserState>(
-              (state) =>
-                  state.id == UserStateId.LoggedIn &&
-                  state.userInfo == userInfo,
+              (state) => state is UserLoggedIn && state.userInfo == userInfo,
               "User is logged in and have user info"),
         ]));
 
