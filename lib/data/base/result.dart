@@ -1,14 +1,12 @@
-class Result<T> {
-  final T data;
-  final String message;
-  final Exception exception;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  Result({this.data, this.message, this.exception});
+part '../../generated/result.freezed.dart';
 
-  bool get isSuccessful => data != null;
+@freezed
+abstract class Result<T> with _$Result<T>{
+  const factory Result.success(T data) = ResultSuccess<T>;
 
-  factory Result.success(T data) => Result(data: data);
-
-  factory Result.failure([String message, Exception exception]) =>
-      Result(message: message, exception: exception);
+  const factory Result.failure([String message, Exception exception]) = ResultFailure<T>;
 }
+
+

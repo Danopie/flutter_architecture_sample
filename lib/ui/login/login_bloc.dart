@@ -1,3 +1,4 @@
+import 'package:flutter_architecture_sample/data/base/result.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
@@ -14,13 +15,13 @@ class LoginBloc extends Bloc<LoginState> {
   Future onUserLogin(String username, String password) async {
     update(latestState.copyWith(id: LoginStateId.Loading));
     final result = await _userRepository.login(username, password);
-    if (result.isSuccessful) {
-      _userBloc.onUserLoginSuccessful(result.data);
+
+    result.when(success: (data) {
+      _userBloc.onUserLoginSuccessful(data);
       update(latestState.copyWith(id: LoginStateId.LoginSuccessful));
-    } else {
-      update(
-          latestState.copyWith(id: LoginStateId.Idle, error: result.message));
-    }
+    }, failure: (msg, exception) {
+      update(latestState.copyWith(id: LoginStateId.Idle, error: msg));
+    });
   }
 
   @override

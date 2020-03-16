@@ -32,12 +32,16 @@ dependencies:
   sqflite: ^1.1.7+3
   primitive_type_parser: ^0.0.2
   uni_links: ^0.2.0
+  freezed: ^0.9.2
+  freezed_annotation:
 
 dev_dependencies:
   mockito: ^4.1.1
   test: ^1.9.4
   flutter_test:
     sdk: flutter
+  build_runner:
+  freezed:
 
 
 # For information on the generic Dart part of this file, see the

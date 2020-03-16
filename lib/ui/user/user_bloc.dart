@@ -10,12 +10,13 @@ class UserBloc extends Bloc<UserState> {
   @override
   void init() async {
     final result = await _userRepository.getUserInfo();
-    if (result.data != null) {
-      update(latestState.copyWith(
-          id: UserStateId.LoggedIn, userInfo: Nullable(result.data)));
-    } else {
+
+    result.maybeWhen(orElse: () {
       update(latestState.copyWith(id: UserStateId.NotLoggedIn));
-    }
+    }, success: (data) {
+      update(latestState.copyWith(
+          id: UserStateId.LoggedIn, userInfo: Nullable(data)));
+    });
   }
 
   @override

@@ -33,5 +33,7 @@ class UserRepository extends Repository {
   }
 
   @override
-  void dispose() {}
+  void dispose() {
+
+  }
 }
