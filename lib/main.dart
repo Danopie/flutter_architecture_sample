@@ -4,6 +4,7 @@ import 'package:flutter_architecture_sample/data/user/user_db.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
 import 'package:flutter_architecture_sample/main.iconfig.dart';
 import 'package:flutter_architecture_sample/res/color.dart';
+import 'package:flutter_architecture_sample/res/string.dart';
 import 'package:flutter_architecture_sample/ui/deeplink/deep_link_bloc.dart';
 import 'package:flutter_architecture_sample/ui/router.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
@@ -32,14 +33,16 @@ class MyApp extends StatelessWidget {
           builder: (context) => UserBloc(GetIt.I.get<UserRepository>()),
         ),
       ],
-      child: AssetColor(
-        child: MaterialApp(
-          navigatorKey: Router.navigatorKey,
-          onGenerateRoute: Router.generateRoute,
-          initialRoute: Router.initialRoute,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
+      child: AssetString(
+        child: AssetColor(
+          child: MaterialApp(
+            navigatorKey: Router.navigatorKey,
+            onGenerateRoute: Router.generateRoute,
+            initialRoute: Router.initialRoute,
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
           ),
         ),
       ),

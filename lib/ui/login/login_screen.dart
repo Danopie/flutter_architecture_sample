@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
 import 'package:flutter_architecture_sample/res/color.dart';
+import 'package:flutter_architecture_sample/res/string.dart';
 import 'package:flutter_architecture_sample/ui/login/login_bloc.dart';
 import 'package:flutter_architecture_sample/ui/router.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
@@ -32,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: AssetColor.of(context).backgroundColor,
         appBar: AppBar(
           leading: Container(),
-          title: Text("Login"),
+          title: Text(AssetString.of(context).loginText),
         ),
         body: BlocListener<LoginBloc, LoginState>(
           listener: (_, bloc, state) {
@@ -49,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: <Widget>[
                     TextField(
                       controller: _usernameTextController,
-                      decoration: InputDecoration(hintText: "Username"),
+                      decoration: InputDecoration(hintText: AssetString.of(context).usernameHintText),
                     ),
                     Container(
                       height: 12,
@@ -57,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextField(
                       controller: _passwordTextController,
                       obscureText: true,
-                      decoration: InputDecoration(hintText: "Password"),
+                      decoration: InputDecoration(hintText: AssetString.of(context).passwordHintText),
                     ),
                     Container(
                       height: 12,
@@ -78,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                     if (state is LoginIdle)
                       RaisedButton(
-                        child: Text("Login"),
+                        child: Text(AssetString.of(context).loginButtonText),
                         onPressed: () {
                           bloc.onUserLogin(_usernameTextController.text,
                               _passwordTextController.text);

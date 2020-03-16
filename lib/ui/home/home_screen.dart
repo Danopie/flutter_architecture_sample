@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_sample/main.dart';
 import 'package:flutter_architecture_sample/res/color.dart';
+import 'package:flutter_architecture_sample/res/string.dart';
 import 'package:flutter_architecture_sample/ui/home/home_bloc.dart';
 import 'package:flutter_architecture_sample/ui/router.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
@@ -28,8 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
       child: BlocWidgetBuilder<HomeBloc, HomeState>(
         builder: (context, bloc, state) {
           final title = state.maybeWhen<String>(
-              orElse: () => "Home",
-              doneLoading: (username) => "Welcome ${username}");
+              orElse: () => "${AssetString.of(context).welcomeText}",
+              doneLoading: (username) => "${AssetString.of(context).welcomeText} ${username}");
 
           final userLoggedIn = state is HomeDoneLoading;
 
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   RaisedButton(
-                    child: Text("Change theme"),
+                    child: Text("${AssetString.of(context).changeThemeButton}"),
                     onPressed: () {
                       final settings = AssetColor.settingsOf(context);
                       settings.changeTheme(settings.theme == AppTheme.Light
@@ -52,9 +53,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           : AppTheme.Light);
                     },
                   ),
+                  RaisedButton(
+                    child: Text("${AssetString.of(context).changeLanguageButton}"),
+                    onPressed: () {
+                      final settings = AssetString.settingsOf(context);
+                      settings.changeTheme(settings.language == AppLanguage.Vietnamese
+                          ? AppLanguage.English
+                          : AppLanguage.Vietnamese);
+                    },
+                  ),
                   if (userLoggedIn)
                     RaisedButton(
-                      child: Text("Logout"),
+                      child: Text("${AssetString.of(context).logoutButton}"),
                       onPressed: () {
                         bloc.onUserLogout();
                       },
