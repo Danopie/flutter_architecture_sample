@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part '../../generated/result.freezed.dart';
+part 'result.freezed.dart';
 
 @freezed
 abstract class Result<T> with _$Result<T>{

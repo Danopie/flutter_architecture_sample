@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
 import 'package:uni_links/uni_links.dart';
 
-part '../../generated/deep_link_bloc.freezed.dart';
+part 'deep_link_bloc.freezed.dart';
 
 class DeepLinkBloc extends Bloc<DeepLinkState> {
   StreamSubscription _sub;

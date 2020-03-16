@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
+import 'package:flutter_architecture_sample/res/color.dart';
 import 'package:flutter_architecture_sample/ui/login/login_bloc.dart';
 import 'package:flutter_architecture_sample/ui/router.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
@@ -28,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
         return false;
       },
       child: Scaffold(
+        backgroundColor: AssetColor.of(context).backgroundColor,
         appBar: AppBar(
           leading: Container(),
           title: Text("Login"),

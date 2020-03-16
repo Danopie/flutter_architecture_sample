@@ -67,6 +67,7 @@ class _AssetColorState extends State<AssetColor> with WidgetsBindingObserver {
   }
 }
 
+
 /// Default asset color - light theme
 class AssetColorData {
   Color get backgroundColor => Colors.white;

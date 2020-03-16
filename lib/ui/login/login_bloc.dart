@@ -3,7 +3,7 @@ import 'package:flutter_architecture_sample/data/user/user_repository.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
-part '../../generated/login_bloc.freezed.dart';
+part 'login_bloc.freezed.dart';
 
 class LoginBloc extends Bloc<LoginState> {
   final UserRepository _userRepository;
