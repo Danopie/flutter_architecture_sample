@@ -23,7 +23,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  lightweight_bloc: ^0.0.3
+  lightweight_bloc: ^0.0.4
   rxdart: ^0.18.1
   dio: ^3.0.7
   provider: ^3.2.0

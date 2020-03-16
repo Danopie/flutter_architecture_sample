@@ -1,7 +1,7 @@
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
-part 'home_bloc.freezed.dart';
+part '../../generated/home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeState> {
   final UserBloc _userBloc;

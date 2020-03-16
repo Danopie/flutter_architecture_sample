@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_sample/main.dart';
+import 'package:flutter_architecture_sample/res/color.dart';
 import 'package:flutter_architecture_sample/ui/home/home_bloc.dart';
 import 'package:flutter_architecture_sample/ui/router.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
@@ -32,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
           final userLoggedIn = state is HomeDoneLoading;
 
           return Scaffold(
+            backgroundColor: AssetColor.of(context).backgroundColor,
             appBar: AppBar(
               title: Text(title),
             ),
@@ -40,6 +43,15 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
+                  RaisedButton(
+                    child: Text("Change theme"),
+                    onPressed: () {
+                      final settings = AssetColor.settingsOf(context);
+                      settings.changeTheme(settings.theme == AppTheme.Light
+                          ? AppTheme.Dark
+                          : AppTheme.Light);
+                    },
+                  ),
                   if (userLoggedIn)
                     RaisedButton(
                       child: Text("Logout"),
