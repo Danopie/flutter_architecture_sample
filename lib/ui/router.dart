@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_sample/config/app_config.dart';
 import 'package:flutter_architecture_sample/ui/deeplink/deep_link_screen.dart';
 import 'package:flutter_architecture_sample/ui/home/home_screen.dart';
 import 'package:flutter_architecture_sample/ui/login/login_screen.dart';
@@ -60,7 +61,11 @@ class CustomPageRoute extends PageRouteBuilder {
             settings: settings,
             pageBuilder: (BuildContext context, Animation<double> animation,
                 Animation<double> secondaryAnimation) {
-              return widget;
+              return Banner(
+                child: widget,
+                message: "${AppConfig.instance.bannerTitle}",
+                location: BannerLocation.topEnd,
+              );
             },
             transitionsBuilder: (BuildContext context,
                 Animation<double> animation,

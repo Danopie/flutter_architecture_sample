@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture_sample/main.dart';
 import 'package:flutter_architecture_sample/res/color.dart';
 import 'package:flutter_architecture_sample/res/string.dart';
 import 'package:flutter_architecture_sample/ui/home/home_bloc.dart';

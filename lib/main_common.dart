@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture_sample/data/user/user_api.dart';
-import 'package:flutter_architecture_sample/data/user/user_db.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_architecture_sample/config/app_config.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
-import 'package:flutter_architecture_sample/main.iconfig.dart';
+import 'package:flutter_architecture_sample/main_common.iconfig.dart';
 import 'package:flutter_architecture_sample/res/color.dart';
 import 'package:flutter_architecture_sample/res/string.dart';
 import 'package:flutter_architecture_sample/ui/deeplink/deep_link_bloc.dart';
@@ -11,11 +13,32 @@ import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
-import 'package:provider/provider.dart';
 
-void main() {
+Future initApp(Flavor flavor) async {
   configure();
+  WidgetsFlutterBinding.ensureInitialized();
+  await initAppConfig(flavor);
   runApp(MyApp());
+}
+
+Future initAppConfig(Flavor flavor) async {
+  try {
+    final json =
+        await rootBundle.loadString('asset/${_getConfigFileName(flavor)}.json');
+    AppConfig.instance = AppConfig.fromJson(jsonDecode(json), flavor);
+  } catch (e) {
+    print('initAppConfig: ${e.toString()}');
+  }
+}
+
+String _getConfigFileName(Flavor flavor) {
+  switch (flavor) {
+    case Flavor.Development:
+      return "config_dev";
+    case Flavor.Production:
+    default:
+      return "config_prod";
+  }
 }
 
 @injectableInit
@@ -39,6 +62,7 @@ class MyApp extends StatelessWidget {
             navigatorKey: Router.navigatorKey,
             onGenerateRoute: Router.generateRoute,
             initialRoute: Router.initialRoute,
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(
               primarySwatch: Colors.blue,
@@ -49,4 +73,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
