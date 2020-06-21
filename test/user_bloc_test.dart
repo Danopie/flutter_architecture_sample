@@ -1,7 +1,7 @@
-import 'package:flutter_architecture_sample/data/base/result.dart';
 import 'package:flutter_architecture_sample/data/user/login_response.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
+import 'package:lightweight_result/lightweight_result.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -23,7 +23,7 @@ void main() {
 
   test("UserBloc_Should be in Loading_Before init", () {
     expectLater(
-        sut.stateStream,
+        sut,
         emitsInOrder([
           predicate<UserState>((state) => state is UserLoading, "Loading user"),
           emitsDone
@@ -36,10 +36,10 @@ void main() {
     final userInfo = UserInfo(name: "dan le", token: "dfasfads");
 
     when(userRepository.getUserInfo())
-        .thenAnswer((_) => Future.value(Result.success(userInfo)));
+        .thenAnswer((_) => Future.value(Result.ok(userInfo)));
 
     expectLater(
-        sut.stateStream,
+        sut,
         emitsInOrder([
           predicate<UserState>((state) => state is UserLoading, "Loading user"),
           predicate<UserState>(
@@ -55,10 +55,10 @@ void main() {
   test("UserBloc_Should emits not logged in_When cached info is empty",
       () async {
     when(userRepository.getUserInfo())
-        .thenAnswer((_) => Future.value(Result.failure()));
+        .thenAnswer((_) => Future.value(Result.err(UserError.UserInfoIsEmpty)));
 
     expectLater(
-        sut.stateStream,
+        sut,
         emitsInOrder([
           predicate<UserState>((state) => state is UserLoading, "Loading user"),
           predicate<UserState>(
@@ -73,10 +73,10 @@ void main() {
     final userInfo = UserInfo(name: "dan le", token: "dfasfads");
 
     when(userRepository.getUserInfo())
-        .thenAnswer((_) => Future.value(Result.success(userInfo)));
+        .thenAnswer((_) => Future.value(Result.ok(userInfo)));
 
     expectLater(
-        sut.stateStream,
+        sut,
         emitsInOrder([
           predicate<UserState>((state) => state is UserLoading, "Loading user"),
           predicate<UserState>(
@@ -98,10 +98,10 @@ void main() {
     final userInfo = UserInfo(name: "dan le", token: "dfasfads");
 
     when(userRepository.getUserInfo())
-        .thenAnswer((_) => Future.value(Result.success(userInfo)));
+        .thenAnswer((_) => Future.value(Result.ok(userInfo)));
 
     expectLater(
-        sut.stateStream,
+        sut,
         emitsInOrder([
           predicate<UserState>((state) => state is UserLoading, "Loading user"),
           predicate<UserState>(

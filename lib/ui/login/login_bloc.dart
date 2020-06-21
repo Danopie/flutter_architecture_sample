@@ -1,8 +1,9 @@
-import 'package:flutter_architecture_sample/data/base/result.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
+import 'package:lightweight_result/lightweight_result.dart';
+
 part 'login_bloc.freezed.dart';
 
 class LoginBloc extends Bloc<LoginState> {
@@ -18,16 +19,22 @@ class LoginBloc extends Bloc<LoginState> {
     update(LoginState.loading());
     final result = await _userRepository.login(username, password);
 
-    result.when(success: (data) {
+    result.fold((data) {
       _userBloc.onUserLoginSuccessful(data);
       update(LoginState.success());
-    }, failure: (msg, exception) {
-      update(LoginState.idle(error: msg));
+    }, (error) {
+      update(LoginState.idle(error: _getLoginErrorMessage(error)));
     });
   }
 
   @override
   LoginState get initialState => LoginState.idle();
+
+  _getLoginErrorMessage(UserError error) {
+    if (error == UserError.LoginFailed) {
+      return 'Login Failed';
+    }
+  }
 }
 
 @freezed
@@ -36,4 +43,3 @@ abstract class LoginState with _$LoginState {
   const factory LoginState.loading() = LoginLoading;
   const factory LoginState.success() = LoginSuccessful;
 }
-

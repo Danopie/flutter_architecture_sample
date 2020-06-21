@@ -1,6 +1,7 @@
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
+
 part 'home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeState> {
@@ -10,7 +11,7 @@ class HomeBloc extends Bloc<HomeState> {
 
   @override
   void init() {
-    _userBloc.stateStream.listen((userState) {
+    _userBloc.listen((userState) {
       userState.when(
           loggedIn: (userInfo) {
             update((HomeState.doneLoading(username: userInfo.name)));

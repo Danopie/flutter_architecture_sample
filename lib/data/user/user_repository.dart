@@ -1,9 +1,9 @@
 import 'package:flutter_architecture_sample/data/base/repository.dart';
-import 'package:flutter_architecture_sample/data/base/result.dart';
 import 'package:flutter_architecture_sample/data/user/login_response.dart';
 import 'package:flutter_architecture_sample/data/user/user_api.dart';
 import 'package:flutter_architecture_sample/data/user/user_db.dart';
 import 'package:injectable/injectable.dart';
+import 'package:lightweight_result/lightweight_result.dart';
 
 @injectable
 class UserRepository extends Repository {
@@ -12,12 +12,12 @@ class UserRepository extends Repository {
 
   UserRepository(this._userApiService, this._userDao);
 
-  Future<Result<UserInfo>> getUserInfo() async {
+  Future<Result<UserInfo, UserError>> getUserInfo() async {
     final userInfo = await _userDao.getUserInfo();
-    if(userInfo != null){
-      return Result<UserInfo>.success(userInfo);
+    if (userInfo != null) {
+      return Result.ok(userInfo);
     } else {
-      return Result.failure();
+      return Result.err(UserError.UserInfoIsEmpty);
     }
   }
 
@@ -25,12 +25,13 @@ class UserRepository extends Repository {
     await _userDao.clearUserInfo();
   }
 
-  Future<Result<UserInfo>> login(String username, String password) async {
+  Future<Result<UserInfo, UserError>> login(
+      String username, String password) async {
     try {
       final userInfo = await _userApiService.login(username, password);
-      return Result<UserInfo>.success(userInfo);
+      return Result<UserInfo, UserError>.ok(userInfo);
     } on Exception catch (e) {
-      return Result<UserInfo>.failure(e.toString(), e);
+      return Result<UserInfo, UserError>.err(UserError.LoginFailed);
     }
   }
 
@@ -39,7 +40,7 @@ class UserRepository extends Repository {
   }
 
   @override
-  void dispose() {
-
-  }
+  void dispose() {}
 }
+
+enum UserError { UserInfoIsEmpty, LoginFailed }

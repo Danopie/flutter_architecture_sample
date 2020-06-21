@@ -1,8 +1,8 @@
-import 'package:flutter_architecture_sample/data/base/result.dart';
 import 'package:flutter_architecture_sample/data/user/login_response.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
 import 'package:flutter_architecture_sample/ui/login/login_bloc.dart';
 import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
+import 'package:lightweight_result/lightweight_result.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -30,7 +30,7 @@ void main() {
   test("LoginBloc_Should be idle on init", () {
     sut.init();
     expect(
-        sut.stateStream,
+        sut,
         emitsInOrder([
           predicate<LoginState>((state) => state is LoginIdle),
         ]));
@@ -44,10 +44,10 @@ void main() {
     final userInfo = UserInfo(name: "dan le", token: "dfasfads");
 
     when(userRepository.login(username, password))
-        .thenAnswer((_) => Future.value(Result.success(userInfo)));
+        .thenAnswer((_) => Future.value(Result.ok(userInfo)));
 
     expectLater(
-        sut.stateStream,
+        sut,
         emitsInOrder([
           predicate<LoginState>((state) => state is LoginIdle, "In idle"),
           predicate<LoginState>((state) => state is LoginLoading, "Logging in"),
@@ -63,13 +63,13 @@ void main() {
 
   test("LoginBloc_Should show emits error and reset to idle_When login failed",
       () async {
-    final error = "Error";
+    final error = "Login failed";
 
     when(userRepository.login(any, any))
-        .thenAnswer((_) => Future.value(Result.failure(error)));
+        .thenAnswer((_) => Future.value(Result.err(UserError.LoginFailed)));
 
     expectLater(
-        sut.stateStream,
+        sut,
         emitsInOrder([
           predicate<LoginState>((state) => state is LoginIdle, "In idle"),
           predicate<LoginState>((state) => state is LoginLoading, "Logging in"),
