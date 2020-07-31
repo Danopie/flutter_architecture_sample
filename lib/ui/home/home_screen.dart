@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_sample/config/app_config.dart';
 import 'package:flutter_architecture_sample/res/color.dart';
 import 'package:flutter_architecture_sample/res/string.dart';
 import 'package:flutter_architecture_sample/ui/home/home_bloc.dart';
@@ -29,7 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, bloc, state) {
           final title = state.maybeWhen<String>(
               orElse: () => "${AssetString.of(context).welcomeText}",
-              doneLoading: (username) => "${AssetString.of(context).welcomeText} ${username}");
+              doneLoading: (username) =>
+                  "${AssetString.of(context).welcomeText} ${username}");
 
           final userLoggedIn = state is HomeDoneLoading;
 
@@ -53,12 +55,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                   RaisedButton(
-                    child: Text("${AssetString.of(context).changeLanguageButton}"),
+                    child:
+                        Text("${AssetString.of(context).changeLanguageButton}"),
                     onPressed: () {
                       final settings = AssetString.settingsOf(context);
-                      settings.changeTheme(settings.language == AppLanguage.Vietnamese
-                          ? AppLanguage.English
-                          : AppLanguage.Vietnamese);
+                      settings.changeTheme(
+                          settings.language == AppLanguage.Vietnamese
+                              ? AppLanguage.English
+                              : AppLanguage.Vietnamese);
                     },
                   ),
                   if (userLoggedIn)
@@ -67,7 +71,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         bloc.onUserLogout();
                       },
-                    )
+                    ),
+                  Spacer(),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 12),
+                    child: Text(
+                      "${AppConfig.instance.flavor}",
+                      textAlign: TextAlign.center,
+                    ),
+                  )
                 ],
               ),
             ),

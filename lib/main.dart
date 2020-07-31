@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_architecture_sample/config/app_config.dart';
+import 'package:flutter_architecture_sample/config/environment_config.dart';
 import 'package:flutter_architecture_sample/data/user/user_repository.dart';
-import 'package:flutter_architecture_sample/main_common.iconfig.dart';
+import 'package:flutter_architecture_sample/main.iconfig.dart';
 import 'package:flutter_architecture_sample/res/color.dart';
 import 'package:flutter_architecture_sample/res/string.dart';
 import 'package:flutter_architecture_sample/ui/deeplink/deep_link_bloc.dart';
@@ -14,18 +15,23 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
 
-Future initApp(Flavor flavor) async {
+void main() {
+  initApp();
+}
+
+Future initApp() async {
   configure();
   WidgetsFlutterBinding.ensureInitialized();
-  await initAppConfig(flavor);
+  await initAppConfig();
   runApp(MyApp());
 }
 
-Future initAppConfig(Flavor flavor) async {
+Future initAppConfig() async {
   try {
-    final json =
-        await rootBundle.loadString('asset/${_getConfigFileName(flavor)}.json');
-    AppConfig.instance = AppConfig.fromJson(jsonDecode(json), flavor);
+    final json = await rootBundle.loadString(
+        'asset/${_getConfigFileName(EnvironmentConfig.flavor)}.json');
+    AppConfig.instance =
+        AppConfig.fromJson(jsonDecode(json), EnvironmentConfig.flavor);
   } catch (e) {
     print('initAppConfig: ${e.toString()}');
   }
