@@ -1,7 +1,7 @@
-import 'package:flutter_architecture_sample/data/base/exception.dart';
-import 'package:flutter_architecture_sample/data/network/api_path.dart';
-import 'package:flutter_architecture_sample/data/network/api_provider.dart';
-import 'package:flutter_architecture_sample/data/user/login_response.dart';
+import 'package:flutter_architecture_sample/core/base/exception.dart';
+import 'package:flutter_architecture_sample/core/network/api_path.dart';
+import 'package:flutter_architecture_sample/core/network/api_provider.dart';
+import 'package:flutter_architecture_sample/user/data/login_response.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

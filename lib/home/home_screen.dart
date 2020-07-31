@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture_sample/config/app_config.dart';
+import 'package:flutter_architecture_sample/core/config/app_config.dart';
 import 'package:flutter_architecture_sample/res/color.dart';
 import 'package:flutter_architecture_sample/res/string.dart';
-import 'package:flutter_architecture_sample/ui/home/home_bloc.dart';
-import 'package:flutter_architecture_sample/ui/router.dart';
-import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
+import 'package:flutter_architecture_sample/home/home_bloc.dart';
+import 'package:flutter_architecture_sample/core/router.dart';
+import 'package:flutter_architecture_sample/user/user_bloc.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
 
 class HomeScreen extends StatefulWidget {

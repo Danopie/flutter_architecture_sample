@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/services.dart' show PlatformException;
-import 'package:flutter_architecture_sample/ui/router.dart';
+import 'package:flutter_architecture_sample/core/router.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
 import 'package:uni_links/uni_links.dart';

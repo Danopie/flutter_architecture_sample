@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture_sample/data/user/user_repository.dart';
+import 'package:flutter_architecture_sample/user/data/user_repository.dart';
 import 'package:flutter_architecture_sample/res/color.dart';
 import 'package:flutter_architecture_sample/res/string.dart';
-import 'package:flutter_architecture_sample/ui/login/login_bloc.dart';
-import 'package:flutter_architecture_sample/ui/router.dart';
-import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
+import 'package:flutter_architecture_sample/login/login_bloc.dart';
+import 'package:flutter_architecture_sample/core/router.dart';
+import 'package:flutter_architecture_sample/user/user_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
 

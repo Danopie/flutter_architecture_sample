@@ -1,4 +1,4 @@
-import 'package:flutter_architecture_sample/config/app_config.dart';
+import 'package:flutter_architecture_sample/core/config/app_config.dart';
 
 class EnvironmentConfig {
 

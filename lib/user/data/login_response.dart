@@ -4,8 +4,8 @@
 
 import 'dart:convert';
 
-import 'package:flutter_architecture_sample/data/database/entity.dart';
-import 'package:flutter_architecture_sample/data/network/request_status.dart';
+import 'package:flutter_architecture_sample/core/database/entity.dart';
+import 'package:flutter_architecture_sample/core/network/request_status.dart';
 import 'package:primitive_type_parser/primitive_type_parser.dart';
 
 class LoginResponse {

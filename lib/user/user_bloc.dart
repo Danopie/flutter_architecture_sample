@@ -1,5 +1,5 @@
-import 'package:flutter_architecture_sample/data/user/login_response.dart';
-import 'package:flutter_architecture_sample/data/user/user_repository.dart';
+import 'package:flutter_architecture_sample/user/data/login_response.dart';
+import 'package:flutter_architecture_sample/user/data/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
 import 'package:lightweight_result/lightweight_result.dart';

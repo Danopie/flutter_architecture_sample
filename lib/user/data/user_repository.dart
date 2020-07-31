@@ -1,7 +1,7 @@
-import 'package:flutter_architecture_sample/data/base/repository.dart';
-import 'package:flutter_architecture_sample/data/user/login_response.dart';
-import 'package:flutter_architecture_sample/data/user/user_api.dart';
-import 'package:flutter_architecture_sample/data/user/user_db.dart';
+import 'package:flutter_architecture_sample/core/base/repository.dart';
+import 'package:flutter_architecture_sample/user/data/login_response.dart';
+import 'package:flutter_architecture_sample/user/data/user_api.dart';
+import 'package:flutter_architecture_sample/user/data/user_db.dart';
 import 'package:injectable/injectable.dart';
 import 'package:lightweight_result/lightweight_result.dart';
 

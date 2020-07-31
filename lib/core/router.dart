@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_architecture_sample/config/app_config.dart';
-import 'package:flutter_architecture_sample/ui/deeplink/deep_link_screen.dart';
-import 'package:flutter_architecture_sample/ui/home/home_screen.dart';
-import 'package:flutter_architecture_sample/ui/login/login_screen.dart';
+import 'package:flutter_architecture_sample/core/config/app_config.dart';
+import 'package:flutter_architecture_sample/deeplink/deep_link_screen.dart';
+import 'package:flutter_architecture_sample/home/home_screen.dart';
+import 'package:flutter_architecture_sample/login/login_screen.dart';
 
 class Router {
   static final navigatorKey = GlobalKey<NavigatorState>();

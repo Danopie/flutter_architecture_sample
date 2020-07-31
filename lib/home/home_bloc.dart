@@ -1,4 +1,4 @@
-import 'package:flutter_architecture_sample/ui/user/user_bloc.dart';
+import 'package:flutter_architecture_sample/user/user_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:lightweight_bloc/lightweight_bloc.dart';
 

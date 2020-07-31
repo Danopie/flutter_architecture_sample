@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_architecture_sample/data/base/exception.dart';
+import 'package:flutter_architecture_sample/core/base/exception.dart';
 import 'package:meta/meta.dart';
 
 abstract class ApiProvider {
