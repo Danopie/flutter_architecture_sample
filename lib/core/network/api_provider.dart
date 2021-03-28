@@ -32,9 +32,9 @@ abstract class ApiProvider {
   }
 
   void _handleError(DioError e) {
-    if (e.type == DioErrorType.CONNECT_TIMEOUT ||
-        e.type == DioErrorType.SEND_TIMEOUT ||
-        e.type == DioErrorType.RECEIVE_TIMEOUT) {
+    if (e.type == DioErrorType.connectTimeout ||
+        e.type == DioErrorType.sendTimeout ||
+        e.type == DioErrorType.receiveTimeout) {
       throw TimeoutException();
     }
   }
