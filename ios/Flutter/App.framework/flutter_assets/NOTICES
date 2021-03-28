@@ -4314,7 +4314,6 @@ charcode
 dart_style
 fixnum
 glob
-http
 http_multi_server
 http_parser
 matcher

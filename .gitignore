@@ -37,3 +37,4 @@ ios/Podfile.lock
 .flutter-plugins
 .fvm
 android/local.properties
+android/.gradle
