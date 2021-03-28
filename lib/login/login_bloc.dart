@@ -1,8 +1,7 @@
 import 'package:flutter_architecture_sample/user/data/user_repository.dart';
 import 'package:flutter_architecture_sample/user/user_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:lightweight_bloc/lightweight_bloc.dart';
-import 'package:lightweight_result/lightweight_result.dart';
+import 'package:lightweight_bloc/src/bloc.dart';
 
 part 'login_bloc.freezed.dart';
 
@@ -17,14 +16,13 @@ class LoginBloc extends Bloc<LoginState> {
 
   Future onUserLogin(String username, String password) async {
     update(LoginState.loading());
-    final result = await _userRepository.login(username, password);
-
-    result.fold((data) {
+    try {
+      final data = await _userRepository.login(username, password);
       _userBloc.onUserLoginSuccessful(data);
       update(LoginState.success());
-    }, (error) {
+    } on UserError catch (error) {
       update(LoginState.idle(error: _getLoginErrorMessage(error)));
-    });
+    }
   }
 
   @override

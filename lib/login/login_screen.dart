@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
         body: BlocListener<LoginBloc, LoginState>(
           listener: (_, bloc, state) {
             state.maybeWhen(orElse: (){}, success: (){
-              Router.pop();
+              AppRouter.pop();
             });
           },
           child: BlocWidgetBuilder<LoginBloc, LoginState>(

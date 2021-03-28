@@ -65,9 +65,9 @@ class MyApp extends StatelessWidget {
       child: AssetString(
         child: AssetColor(
           child: MaterialApp(
-            navigatorKey: Router.navigatorKey,
-            onGenerateRoute: Router.generateRoute,
-            initialRoute: Router.initialRoute,
+            navigatorKey: AppRouter.navigatorKey,
+            onGenerateRoute: AppRouter.generateRoute,
+            initialRoute: AppRouter.initialRoute,
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(

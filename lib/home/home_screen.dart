@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocListener<HomeBloc, HomeState>(
       listener: (_, __, state) {
         if (state is HomeNeedLogin) {
-          Router.push(ScreenNames.Login);
+          AppRouter.push(ScreenNames.Login);
         }
       },
       child: BlocWidgetBuilder<HomeBloc, HomeState>(

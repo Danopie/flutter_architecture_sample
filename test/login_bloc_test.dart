@@ -2,7 +2,6 @@ import 'package:flutter_architecture_sample/user/data/login_response.dart';
 import 'package:flutter_architecture_sample/user/data/user_repository.dart';
 import 'package:flutter_architecture_sample/login/login_bloc.dart';
 import 'package:flutter_architecture_sample/user/user_bloc.dart';
-import 'package:lightweight_result/lightweight_result.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -44,7 +43,7 @@ void main() {
     final userInfo = UserInfo(name: "dan le", token: "dfasfads");
 
     when(userRepository.login(username, password))
-        .thenAnswer((_) => Future.value(Result.ok(userInfo)));
+        .thenAnswer((_) => Future.value(userInfo));
 
     expectLater(
         sut,
@@ -66,7 +65,7 @@ void main() {
     final error = "Login failed";
 
     when(userRepository.login(any, any))
-        .thenAnswer((_) => Future.value(Result.err(UserError.LoginFailed)));
+        .thenAnswer((_) => Future.error(UserError.LoginFailed));
 
     expectLater(
         sut,

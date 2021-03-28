@@ -5,7 +5,7 @@ import 'package:flutter_architecture_sample/deeplink/deep_link_screen.dart';
 import 'package:flutter_architecture_sample/home/home_screen.dart';
 import 'package:flutter_architecture_sample/login/login_screen.dart';
 
-class Router {
+class AppRouter {
   static final navigatorKey = GlobalKey<NavigatorState>();
 
   static NavigatorState get navigator => navigatorKey.currentState;

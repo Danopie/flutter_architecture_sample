@@ -3,7 +3,6 @@ import 'package:flutter_architecture_sample/user/data/login_response.dart';
 import 'package:flutter_architecture_sample/user/data/user_api.dart';
 import 'package:flutter_architecture_sample/user/data/user_db.dart';
 import 'package:injectable/injectable.dart';
-import 'package:lightweight_result/lightweight_result.dart';
 
 @injectable
 class UserRepository extends Repository {
@@ -12,12 +11,12 @@ class UserRepository extends Repository {
 
   UserRepository(this._userApiService, this._userDao);
 
-  Future<Result<UserInfo, UserError>> getUserInfo() async {
+  Future<UserInfo> getUserInfo() async {
     final userInfo = await _userDao.getUserInfo();
     if (userInfo != null) {
-      return Result.ok(userInfo);
+      return userInfo;
     } else {
-      return Result.err(UserError.UserInfoIsEmpty);
+      throw UserError.UserInfoIsEmpty;
     }
   }
 
@@ -25,13 +24,12 @@ class UserRepository extends Repository {
     await _userDao.clearUserInfo();
   }
 
-  Future<Result<UserInfo, UserError>> login(
-      String username, String password) async {
+  Future<UserInfo> login(String username, String password) async {
     try {
       final userInfo = await _userApiService.login(username, password);
-      return Result<UserInfo, UserError>.ok(userInfo);
+      return userInfo;
     } on Exception catch (e) {
-      return Result<UserInfo, UserError>.err(UserError.LoginFailed);
+      throw UserError.LoginFailed;
     }
   }
 

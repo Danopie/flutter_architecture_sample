@@ -1,8 +1,7 @@
 import 'package:flutter_architecture_sample/user/data/login_response.dart';
 import 'package:flutter_architecture_sample/user/data/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:lightweight_bloc/lightweight_bloc.dart';
-import 'package:lightweight_result/lightweight_result.dart';
+import 'package:lightweight_bloc/src/bloc.dart';
 
 part 'user_bloc.freezed.dart';
 
@@ -13,13 +12,12 @@ class UserBloc extends Bloc<UserState> {
 
   @override
   void init() async {
-    final result = await _userRepository.getUserInfo();
-
-    result.fold((data) {
+    try {
+      final data = await _userRepository.getUserInfo();
       update(UserState.loggedIn(userInfo: data));
-    }, (error) {
+    } on UserError {
       update(UserState.notLoggedIn());
-    });
+    }
   }
 
   @override

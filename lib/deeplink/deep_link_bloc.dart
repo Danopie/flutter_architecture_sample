@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_architecture_sample/core/router.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:lightweight_bloc/lightweight_bloc.dart';
+import 'package:lightweight_bloc/src/bloc.dart';
 import 'package:uni_links/uni_links.dart';
 
 part 'deep_link_bloc.freezed.dart';
@@ -49,7 +49,7 @@ class DeepLinkBloc extends Bloc<DeepLinkState> {
     }
 
     if (routeName != null && routeName.isNotEmpty) {
-      Router.push("/$routeName", arguments: routeName);
+      AppRouter.push("/$routeName", arguments: routeName);
 
       update(DeepLinkState.doneLoading(routeName: routeName));
     }
