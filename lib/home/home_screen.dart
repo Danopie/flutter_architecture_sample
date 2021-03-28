@@ -19,27 +19,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Function listener;
-
-  @override
-  void initState() {
-    listener = context.read<HomeController>().addListener(_handleNewState);
-    super.initState();
-  }
-
-
-  void _handleNewState(HomeState state) {
-    if (state is HomeNeedLogin) {
-      Future.microtask(() => AppRouter.push(ScreenNames.Login));
-    }
-  }
-
-  @override
-  void dispose() {
-    listener?.call();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final state = context.watch<HomeState>();

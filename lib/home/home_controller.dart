@@ -1,3 +1,4 @@
+import 'package:flutter_architecture_sample/core/router.dart';
 import 'package:flutter_architecture_sample/user/user_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:state_notifier/state_notifier.dart';
@@ -20,6 +21,7 @@ class HomeController extends StateNotifier<HomeState> {
           loading: () {},
           notLoggedIn: () {
             state = HomeState.needLogin();
+            AppRouter.push(ScreenNames.Login);
           });
     });
   }

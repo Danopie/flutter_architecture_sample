@@ -24,29 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _usernameTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
 
-  var listener;
-
-  @override
-  void initState() {
-    listener = context.read<LoginController>().stream.listen(_handleNewState);
-    super.initState();
-  }
-
-  void _handleNewState(LoginState state) {
-    state.maybeWhen(
-      orElse: () {},
-      success: () {
-        Future.microtask(() => AppRouter.pop());
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    listener?.cancel();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final state = context.watch<LoginState>();

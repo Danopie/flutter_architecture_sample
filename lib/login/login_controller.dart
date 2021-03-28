@@ -1,3 +1,4 @@
+import 'package:flutter_architecture_sample/core/router.dart';
 import 'package:flutter_architecture_sample/user/data/user_repository.dart';
 import 'package:flutter_architecture_sample/user/user_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,6 +18,7 @@ class LoginController extends StateNotifier<LoginState> {
       final data = await _userRepository.login(username, password);
       _userBloc.onUserLoginSuccessful(data);
       state = LoginState.success();
+      AppRouter.pop();
     } on UserError catch (error) {
       state = LoginState.idle(error: _getLoginErrorMessage(error));
     }
