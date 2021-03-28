@@ -1,6 +1,6 @@
 import 'package:flutter_architecture_sample/user/data/login_response.dart';
 import 'package:flutter_architecture_sample/user/data/user_repository.dart';
-import 'package:flutter_architecture_sample/login/login_bloc.dart';
+import 'package:flutter_architecture_sample/login/login_controller.dart';
 import 'package:flutter_architecture_sample/user/user_bloc.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -12,12 +12,12 @@ class MockUserBloc extends Mock implements UserBloc {}
 void main() {
   UserRepository userRepository;
   UserBloc userBloc;
-  LoginBloc sut;
+  LoginController sut;
 
   setUp(() {
     userRepository = MockUserRepository();
     userBloc = MockUserBloc();
-    sut = LoginBloc(userRepository, userBloc);
+    sut = LoginController(userRepository, userBloc);
   });
 
   tearDown(() {
@@ -27,7 +27,6 @@ void main() {
   });
 
   test("LoginBloc_Should be idle on init", () {
-    sut.init();
     expect(
         sut,
         emitsInOrder([
@@ -54,7 +53,6 @@ void main() {
               (state) => state is LoginSuccessful, "Login sucessful"),
         ]));
 
-    await sut.init();
     await sut.onUserLogin(username, password);
 
     verify(userBloc.onUserLoginSuccessful(userInfo)).called(1);
@@ -77,7 +75,6 @@ void main() {
               "Login failed"),
         ]));
 
-    await sut.init();
     await sut.onUserLogin("", "");
 
     verifyNever(userBloc.onUserLoginSuccessful(any));

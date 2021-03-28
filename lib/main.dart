@@ -8,12 +8,13 @@ import 'package:flutter_architecture_sample/user/data/user_repository.dart';
 import 'package:flutter_architecture_sample/main.iconfig.dart';
 import 'package:flutter_architecture_sample/res/color.dart';
 import 'package:flutter_architecture_sample/res/string.dart';
-import 'package:flutter_architecture_sample/deeplink/deep_link_bloc.dart';
+import 'package:flutter_architecture_sample/deeplink/deep_link_controller.dart';
 import 'package:flutter_architecture_sample/core/router.dart';
 import 'package:flutter_architecture_sample/user/user_bloc.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:lightweight_bloc/lightweight_bloc.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   initApp();
@@ -53,13 +54,13 @@ void configure() => $initGetIt(GetIt.instance);
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      builder: (context) => [
-        BlocProvider<DeepLinkBloc>(
-          builder: (context) => DeepLinkBloc(),
+    return MultiProvider(
+      providers: [
+        StateNotifierProvider<DeepLinkController, DeepLinkState>(
+          create: (context) => DeepLinkController(),
         ),
-        BlocProvider<UserBloc>(
-          builder: (context) => UserBloc(GetIt.I.get<UserRepository>()),
+        StateNotifierProvider<UserBloc, UserState>(
+          create: (context) => UserBloc(GetIt.I.get<UserRepository>()),
         ),
       ],
       child: AppString(

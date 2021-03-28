@@ -38,10 +38,12 @@ class AppRouter {
   static String get initialRoute => ScreenNames.Home;
 
   static Future<dynamic> push(String name, {Object arguments}) async {
+    print('AppRouter.push');
     return await navigator.pushNamed(name, arguments: arguments);
   }
 
   static void pop([dynamic result]) {
+    print('AppRouter.pop');
     navigator.pop(result);
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lightweight_bloc/lightweight_bloc.dart';
 import 'package:provider/provider.dart';
 
 enum AppTheme { Light, Dark }
