@@ -63,12 +63,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   if (state is LoginIdle &&
                       state.error != null &&
-                      state.error.isNotEmpty) ...[
+                      state.error!.isNotEmpty) ...[
                     Container(
                       height: 12,
                     ),
                     Text(
-                      state.error,
+                      state.error!,
                       style: TextStyle(color: Colors.red),
                     ),
                     Container(

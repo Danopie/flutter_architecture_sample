@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'deep_link_controller.dart';
 
@@ -7,34 +7,12 @@ part of 'deep_link_controller.dart';
 // FreezedGenerator
 // **************************************************************************
 
-mixin _$DeepLinkState {
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loading(),
-    @required Result doneLoading(String routeName),
-  });
+T _$identity<T>(T value) => value;
 
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loading(),
-    Result doneLoading(String routeName),
-    @required Result orElse(),
-  });
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loading(DeepLinkLoading value),
-    @required Result doneLoading(DeepLinkDoneLoading value),
-  });
-
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loading(DeepLinkLoading value),
-    Result doneLoading(DeepLinkDoneLoading value),
-    @required Result orElse(),
-  });
-}
-
+/// @nodoc
 class _$DeepLinkStateTearOff {
   const _$DeepLinkStateTearOff();
 
@@ -42,15 +20,83 @@ class _$DeepLinkStateTearOff {
     return const DeepLinkLoading();
   }
 
-  DeepLinkDoneLoading doneLoading({String routeName}) {
+  DeepLinkDoneLoading doneLoading({String? routeName}) {
     return DeepLinkDoneLoading(
       routeName: routeName,
     );
   }
 }
 
+/// @nodoc
 const $DeepLinkState = _$DeepLinkStateTearOff();
 
+/// @nodoc
+mixin _$DeepLinkState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(String? routeName) doneLoading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(String? routeName)? doneLoading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DeepLinkLoading value) loading,
+    required TResult Function(DeepLinkDoneLoading value) doneLoading,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DeepLinkLoading value)? loading,
+    TResult Function(DeepLinkDoneLoading value)? doneLoading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeepLinkStateCopyWith<$Res> {
+  factory $DeepLinkStateCopyWith(
+          DeepLinkState value, $Res Function(DeepLinkState) then) =
+      _$DeepLinkStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$DeepLinkStateCopyWithImpl<$Res>
+    implements $DeepLinkStateCopyWith<$Res> {
+  _$DeepLinkStateCopyWithImpl(this._value, this._then);
+
+  final DeepLinkState _value;
+  // ignore: unused_field
+  final $Res Function(DeepLinkState) _then;
+}
+
+/// @nodoc
+abstract class $DeepLinkLoadingCopyWith<$Res> {
+  factory $DeepLinkLoadingCopyWith(
+          DeepLinkLoading value, $Res Function(DeepLinkLoading) then) =
+      _$DeepLinkLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$DeepLinkLoadingCopyWithImpl<$Res>
+    extends _$DeepLinkStateCopyWithImpl<$Res>
+    implements $DeepLinkLoadingCopyWith<$Res> {
+  _$DeepLinkLoadingCopyWithImpl(
+      DeepLinkLoading _value, $Res Function(DeepLinkLoading) _then)
+      : super(_value, (v) => _then(v as DeepLinkLoading));
+
+  @override
+  DeepLinkLoading get _value => super._value as DeepLinkLoading;
+}
+
+/// @nodoc
 class _$DeepLinkLoading implements DeepLinkLoading {
   const _$DeepLinkLoading();
 
@@ -69,23 +115,20 @@ class _$DeepLinkLoading implements DeepLinkLoading {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loading(),
-    @required Result doneLoading(String routeName),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(String? routeName) doneLoading,
   }) {
-    assert(loading != null);
-    assert(doneLoading != null);
     return loading();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loading(),
-    Result doneLoading(String routeName),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(String? routeName)? doneLoading,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loading != null) {
       return loading();
     }
@@ -94,23 +137,20 @@ class _$DeepLinkLoading implements DeepLinkLoading {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loading(DeepLinkLoading value),
-    @required Result doneLoading(DeepLinkDoneLoading value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(DeepLinkLoading value) loading,
+    required TResult Function(DeepLinkDoneLoading value) doneLoading,
   }) {
-    assert(loading != null);
-    assert(doneLoading != null);
     return loading(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loading(DeepLinkLoading value),
-    Result doneLoading(DeepLinkDoneLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DeepLinkLoading value)? loading,
+    TResult Function(DeepLinkDoneLoading value)? doneLoading,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loading != null) {
       return loading(this);
     }
@@ -122,11 +162,44 @@ abstract class DeepLinkLoading implements DeepLinkState {
   const factory DeepLinkLoading() = _$DeepLinkLoading;
 }
 
+/// @nodoc
+abstract class $DeepLinkDoneLoadingCopyWith<$Res> {
+  factory $DeepLinkDoneLoadingCopyWith(
+          DeepLinkDoneLoading value, $Res Function(DeepLinkDoneLoading) then) =
+      _$DeepLinkDoneLoadingCopyWithImpl<$Res>;
+  $Res call({String? routeName});
+}
+
+/// @nodoc
+class _$DeepLinkDoneLoadingCopyWithImpl<$Res>
+    extends _$DeepLinkStateCopyWithImpl<$Res>
+    implements $DeepLinkDoneLoadingCopyWith<$Res> {
+  _$DeepLinkDoneLoadingCopyWithImpl(
+      DeepLinkDoneLoading _value, $Res Function(DeepLinkDoneLoading) _then)
+      : super(_value, (v) => _then(v as DeepLinkDoneLoading));
+
+  @override
+  DeepLinkDoneLoading get _value => super._value as DeepLinkDoneLoading;
+
+  @override
+  $Res call({
+    Object? routeName = freezed,
+  }) {
+    return _then(DeepLinkDoneLoading(
+      routeName: routeName == freezed
+          ? _value.routeName
+          : routeName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
 class _$DeepLinkDoneLoading implements DeepLinkDoneLoading {
   const _$DeepLinkDoneLoading({this.routeName});
 
   @override
-  final String routeName;
+  final String? routeName;
 
   @override
   String toString() {
@@ -146,34 +219,27 @@ class _$DeepLinkDoneLoading implements DeepLinkDoneLoading {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(routeName);
 
+  @JsonKey(ignore: true)
   @override
-  _$DeepLinkDoneLoading copyWith({
-    Object routeName = freezed,
-  }) {
-    return _$DeepLinkDoneLoading(
-      routeName: routeName == freezed ? this.routeName : routeName as String,
-    );
-  }
+  $DeepLinkDoneLoadingCopyWith<DeepLinkDoneLoading> get copyWith =>
+      _$DeepLinkDoneLoadingCopyWithImpl<DeepLinkDoneLoading>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loading(),
-    @required Result doneLoading(String routeName),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(String? routeName) doneLoading,
   }) {
-    assert(loading != null);
-    assert(doneLoading != null);
     return doneLoading(routeName);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loading(),
-    Result doneLoading(String routeName),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(String? routeName)? doneLoading,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (doneLoading != null) {
       return doneLoading(routeName);
     }
@@ -182,23 +248,20 @@ class _$DeepLinkDoneLoading implements DeepLinkDoneLoading {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loading(DeepLinkLoading value),
-    @required Result doneLoading(DeepLinkDoneLoading value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(DeepLinkLoading value) loading,
+    required TResult Function(DeepLinkDoneLoading value) doneLoading,
   }) {
-    assert(loading != null);
-    assert(doneLoading != null);
     return doneLoading(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loading(DeepLinkLoading value),
-    Result doneLoading(DeepLinkDoneLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DeepLinkLoading value)? loading,
+    TResult Function(DeepLinkDoneLoading value)? doneLoading,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (doneLoading != null) {
       return doneLoading(this);
     }
@@ -207,9 +270,11 @@ class _$DeepLinkDoneLoading implements DeepLinkDoneLoading {
 }
 
 abstract class DeepLinkDoneLoading implements DeepLinkState {
-  const factory DeepLinkDoneLoading({String routeName}) = _$DeepLinkDoneLoading;
+  const factory DeepLinkDoneLoading({String? routeName}) =
+      _$DeepLinkDoneLoading;
 
-  String get routeName;
-
-  DeepLinkDoneLoading copyWith({String routeName});
+  String? get routeName => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DeepLinkDoneLoadingCopyWith<DeepLinkDoneLoading> get copyWith =>
+      throw _privateConstructorUsedError;
 }

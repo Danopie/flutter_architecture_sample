@@ -12,20 +12,20 @@ abstract class ApiProvider {
   }
 
   @protected
-  Future<T> get<T>(String path, [Map<String, String> params]) async {
+  Future<T?> get<T>(String path, [Map<String, String>? params]) async {
     try {
       final response = await _client.get(path, queryParameters: params);
-      return response?.data;
+      return response.data;
     } on DioError catch (e) {
       _handleError(e);
     }
   }
 
   @protected
-  Future<T> post<T>(String path, [Map<String, dynamic> params]) async {
+  Future<T?> post<T>(String path, [Map<String, dynamic>? params]) async {
     try {
       final response = await _client.post(path, data: params);
-      return response?.data;
+      return response.data;
     } on DioError catch (e) {
       _handleError(e);
     }

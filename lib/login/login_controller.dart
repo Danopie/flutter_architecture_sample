@@ -15,7 +15,7 @@ class LoginController extends StateNotifier<LoginState> {
   Future onUserLogin(String username, String password) async {
     state = LoginState.loading();
     try {
-      final data = await _userRepository.login(username, password);
+      final data = await (_userRepository.login(username, password));
       _userBloc.onUserLoginSuccessful(data);
       state = LoginState.success();
       AppRouter.pop();
@@ -33,7 +33,7 @@ class LoginController extends StateNotifier<LoginState> {
 
 @freezed
 abstract class LoginState with _$LoginState {
-  const factory LoginState.idle({String error}) = LoginIdle;
+  const factory LoginState.idle({String? error}) = LoginIdle;
   const factory LoginState.loading() = LoginLoading;
   const factory LoginState.success() = LoginSuccessful;
 }

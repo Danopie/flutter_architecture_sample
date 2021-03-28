@@ -19,7 +19,7 @@ class UserDatabaseProvider extends DatabaseProvider {
     await insert(userInfo.toJson());
   }
 
-  Future<UserInfo> getUserInfo() async {
+  Future<UserInfo?> getUserInfo() async {
     final maps = await getAll();
 
     return maps != null && maps.isNotEmpty

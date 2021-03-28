@@ -34,6 +34,6 @@ class HomeController extends StateNotifier<HomeState> {
 @freezed
 abstract class HomeState with _$HomeState {
   const factory HomeState.loading() = HomeLoading;
-  const factory HomeState.doneLoading({String username}) = HomeDoneLoading;
+  const factory HomeState.doneLoading({String? username}) = HomeDoneLoading;
   const factory HomeState.needLogin() = HomeNeedLogin;
 }

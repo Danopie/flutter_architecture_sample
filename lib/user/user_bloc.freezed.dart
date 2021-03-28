@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'user_bloc.dart';
 
@@ -7,42 +7,16 @@ part of 'user_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
-mixin _$UserState {
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loggedIn(UserInfo userInfo),
-    @required Result loading(),
-    @required Result notLoggedIn(),
-  });
+T _$identity<T>(T value) => value;
 
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loggedIn(UserInfo userInfo),
-    Result loading(),
-    Result notLoggedIn(),
-    @required Result orElse(),
-  });
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loggedIn(UserLoggedIn value),
-    @required Result loading(UserLoading value),
-    @required Result notLoggedIn(UserNotLoggedIn value),
-  });
-
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loggedIn(UserLoggedIn value),
-    Result loading(UserLoading value),
-    Result notLoggedIn(UserNotLoggedIn value),
-    @required Result orElse(),
-  });
-}
-
+/// @nodoc
 class _$UserStateTearOff {
   const _$UserStateTearOff();
 
-  UserLoggedIn loggedIn({UserInfo userInfo}) {
+  UserLoggedIn loggedIn({required UserInfo userInfo}) {
     return UserLoggedIn(
       userInfo: userInfo,
     );
@@ -57,10 +31,92 @@ class _$UserStateTearOff {
   }
 }
 
+/// @nodoc
 const $UserState = _$UserStateTearOff();
 
+/// @nodoc
+mixin _$UserState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserInfo userInfo) loggedIn,
+    required TResult Function() loading,
+    required TResult Function() notLoggedIn,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserInfo userInfo)? loggedIn,
+    TResult Function()? loading,
+    TResult Function()? notLoggedIn,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedIn value) loggedIn,
+    required TResult Function(UserLoading value) loading,
+    required TResult Function(UserNotLoggedIn value) notLoggedIn,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedIn value)? loggedIn,
+    TResult Function(UserLoading value)? loading,
+    TResult Function(UserNotLoggedIn value)? notLoggedIn,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserStateCopyWith<$Res> {
+  factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
+      _$UserStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
+  _$UserStateCopyWithImpl(this._value, this._then);
+
+  final UserState _value;
+  // ignore: unused_field
+  final $Res Function(UserState) _then;
+}
+
+/// @nodoc
+abstract class $UserLoggedInCopyWith<$Res> {
+  factory $UserLoggedInCopyWith(
+          UserLoggedIn value, $Res Function(UserLoggedIn) then) =
+      _$UserLoggedInCopyWithImpl<$Res>;
+  $Res call({UserInfo userInfo});
+}
+
+/// @nodoc
+class _$UserLoggedInCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
+    implements $UserLoggedInCopyWith<$Res> {
+  _$UserLoggedInCopyWithImpl(
+      UserLoggedIn _value, $Res Function(UserLoggedIn) _then)
+      : super(_value, (v) => _then(v as UserLoggedIn));
+
+  @override
+  UserLoggedIn get _value => super._value as UserLoggedIn;
+
+  @override
+  $Res call({
+    Object? userInfo = freezed,
+  }) {
+    return _then(UserLoggedIn(
+      userInfo: userInfo == freezed
+          ? _value.userInfo
+          : userInfo // ignore: cast_nullable_to_non_nullable
+              as UserInfo,
+    ));
+  }
+}
+
+/// @nodoc
 class _$UserLoggedIn implements UserLoggedIn {
-  const _$UserLoggedIn({this.userInfo});
+  const _$UserLoggedIn({required this.userInfo});
 
   @override
   final UserInfo userInfo;
@@ -83,37 +139,29 @@ class _$UserLoggedIn implements UserLoggedIn {
   int get hashCode =>
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(userInfo);
 
+  @JsonKey(ignore: true)
   @override
-  _$UserLoggedIn copyWith({
-    Object userInfo = freezed,
-  }) {
-    return _$UserLoggedIn(
-      userInfo: userInfo == freezed ? this.userInfo : userInfo as UserInfo,
-    );
-  }
+  $UserLoggedInCopyWith<UserLoggedIn> get copyWith =>
+      _$UserLoggedInCopyWithImpl<UserLoggedIn>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loggedIn(UserInfo userInfo),
-    @required Result loading(),
-    @required Result notLoggedIn(),
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserInfo userInfo) loggedIn,
+    required TResult Function() loading,
+    required TResult Function() notLoggedIn,
   }) {
-    assert(loggedIn != null);
-    assert(loading != null);
-    assert(notLoggedIn != null);
     return loggedIn(userInfo);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loggedIn(UserInfo userInfo),
-    Result loading(),
-    Result notLoggedIn(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserInfo userInfo)? loggedIn,
+    TResult Function()? loading,
+    TResult Function()? notLoggedIn,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loggedIn != null) {
       return loggedIn(userInfo);
     }
@@ -122,26 +170,22 @@ class _$UserLoggedIn implements UserLoggedIn {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loggedIn(UserLoggedIn value),
-    @required Result loading(UserLoading value),
-    @required Result notLoggedIn(UserNotLoggedIn value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedIn value) loggedIn,
+    required TResult Function(UserLoading value) loading,
+    required TResult Function(UserNotLoggedIn value) notLoggedIn,
   }) {
-    assert(loggedIn != null);
-    assert(loading != null);
-    assert(notLoggedIn != null);
     return loggedIn(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loggedIn(UserLoggedIn value),
-    Result loading(UserLoading value),
-    Result notLoggedIn(UserNotLoggedIn value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedIn value)? loggedIn,
+    TResult Function(UserLoading value)? loading,
+    TResult Function(UserNotLoggedIn value)? notLoggedIn,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loggedIn != null) {
       return loggedIn(this);
     }
@@ -150,13 +194,33 @@ class _$UserLoggedIn implements UserLoggedIn {
 }
 
 abstract class UserLoggedIn implements UserState {
-  const factory UserLoggedIn({UserInfo userInfo}) = _$UserLoggedIn;
+  const factory UserLoggedIn({required UserInfo userInfo}) = _$UserLoggedIn;
 
-  UserInfo get userInfo;
-
-  UserLoggedIn copyWith({UserInfo userInfo});
+  UserInfo get userInfo => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserLoggedInCopyWith<UserLoggedIn> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
+/// @nodoc
+abstract class $UserLoadingCopyWith<$Res> {
+  factory $UserLoadingCopyWith(
+          UserLoading value, $Res Function(UserLoading) then) =
+      _$UserLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UserLoadingCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
+    implements $UserLoadingCopyWith<$Res> {
+  _$UserLoadingCopyWithImpl(
+      UserLoading _value, $Res Function(UserLoading) _then)
+      : super(_value, (v) => _then(v as UserLoading));
+
+  @override
+  UserLoading get _value => super._value as UserLoading;
+}
+
+/// @nodoc
 class _$UserLoading implements UserLoading {
   const _$UserLoading();
 
@@ -175,26 +239,22 @@ class _$UserLoading implements UserLoading {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loggedIn(UserInfo userInfo),
-    @required Result loading(),
-    @required Result notLoggedIn(),
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserInfo userInfo) loggedIn,
+    required TResult Function() loading,
+    required TResult Function() notLoggedIn,
   }) {
-    assert(loggedIn != null);
-    assert(loading != null);
-    assert(notLoggedIn != null);
     return loading();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loggedIn(UserInfo userInfo),
-    Result loading(),
-    Result notLoggedIn(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserInfo userInfo)? loggedIn,
+    TResult Function()? loading,
+    TResult Function()? notLoggedIn,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loading != null) {
       return loading();
     }
@@ -203,26 +263,22 @@ class _$UserLoading implements UserLoading {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loggedIn(UserLoggedIn value),
-    @required Result loading(UserLoading value),
-    @required Result notLoggedIn(UserNotLoggedIn value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedIn value) loggedIn,
+    required TResult Function(UserLoading value) loading,
+    required TResult Function(UserNotLoggedIn value) notLoggedIn,
   }) {
-    assert(loggedIn != null);
-    assert(loading != null);
-    assert(notLoggedIn != null);
     return loading(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loggedIn(UserLoggedIn value),
-    Result loading(UserLoading value),
-    Result notLoggedIn(UserNotLoggedIn value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedIn value)? loggedIn,
+    TResult Function(UserLoading value)? loading,
+    TResult Function(UserNotLoggedIn value)? notLoggedIn,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loading != null) {
       return loading(this);
     }
@@ -234,6 +290,25 @@ abstract class UserLoading implements UserState {
   const factory UserLoading() = _$UserLoading;
 }
 
+/// @nodoc
+abstract class $UserNotLoggedInCopyWith<$Res> {
+  factory $UserNotLoggedInCopyWith(
+          UserNotLoggedIn value, $Res Function(UserNotLoggedIn) then) =
+      _$UserNotLoggedInCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$UserNotLoggedInCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
+    implements $UserNotLoggedInCopyWith<$Res> {
+  _$UserNotLoggedInCopyWithImpl(
+      UserNotLoggedIn _value, $Res Function(UserNotLoggedIn) _then)
+      : super(_value, (v) => _then(v as UserNotLoggedIn));
+
+  @override
+  UserNotLoggedIn get _value => super._value as UserNotLoggedIn;
+}
+
+/// @nodoc
 class _$UserNotLoggedIn implements UserNotLoggedIn {
   const _$UserNotLoggedIn();
 
@@ -252,26 +327,22 @@ class _$UserNotLoggedIn implements UserNotLoggedIn {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loggedIn(UserInfo userInfo),
-    @required Result loading(),
-    @required Result notLoggedIn(),
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserInfo userInfo) loggedIn,
+    required TResult Function() loading,
+    required TResult Function() notLoggedIn,
   }) {
-    assert(loggedIn != null);
-    assert(loading != null);
-    assert(notLoggedIn != null);
     return notLoggedIn();
   }
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loggedIn(UserInfo userInfo),
-    Result loading(),
-    Result notLoggedIn(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserInfo userInfo)? loggedIn,
+    TResult Function()? loading,
+    TResult Function()? notLoggedIn,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (notLoggedIn != null) {
       return notLoggedIn();
     }
@@ -280,26 +351,22 @@ class _$UserNotLoggedIn implements UserNotLoggedIn {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loggedIn(UserLoggedIn value),
-    @required Result loading(UserLoading value),
-    @required Result notLoggedIn(UserNotLoggedIn value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserLoggedIn value) loggedIn,
+    required TResult Function(UserLoading value) loading,
+    required TResult Function(UserNotLoggedIn value) notLoggedIn,
   }) {
-    assert(loggedIn != null);
-    assert(loading != null);
-    assert(notLoggedIn != null);
     return notLoggedIn(this);
   }
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loggedIn(UserLoggedIn value),
-    Result loading(UserLoading value),
-    Result notLoggedIn(UserNotLoggedIn value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserLoggedIn value)? loggedIn,
+    TResult Function(UserLoading value)? loading,
+    TResult Function(UserNotLoggedIn value)? notLoggedIn,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (notLoggedIn != null) {
       return notLoggedIn(this);
     }

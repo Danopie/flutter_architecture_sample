@@ -8,7 +8,7 @@ import 'package:flutter_architecture_sample/login/login_screen.dart';
 class AppRouter {
   static final navigatorKey = GlobalKey<NavigatorState>();
 
-  static NavigatorState get navigator => navigatorKey.currentState;
+  static NavigatorState? get navigator => navigatorKey.currentState;
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     Widget widget;
@@ -20,7 +20,7 @@ class AppRouter {
         widget = LoginScreen.newInstance();
         break;
       case ScreenNames.DeepLink:
-        widget = DeepLinkScreen(link: settings.arguments as String);
+        widget = DeepLinkScreen(link: settings.arguments as String?);
         break;
       default:
         widget = Scaffold(
@@ -37,14 +37,14 @@ class AppRouter {
 
   static String get initialRoute => ScreenNames.Home;
 
-  static Future<dynamic> push(String name, {Object arguments}) async {
+  static Future<dynamic> push(String name, {Object? arguments}) async {
     print('AppRouter.push');
-    return await navigator.pushNamed(name, arguments: arguments);
+    return await navigator!.pushNamed(name, arguments: arguments);
   }
 
   static void pop([dynamic result]) {
     print('AppRouter.pop');
-    navigator.pop(result);
+    navigator!.pop(result);
   }
 }
 
@@ -55,10 +55,10 @@ class ScreenNames {
 }
 
 class CustomPageRoute extends PageRouteBuilder {
-  final Widget widget;
+  final Widget? widget;
   final RouteSettings settings;
 
-  CustomPageRoute({this.widget, this.settings})
+  CustomPageRoute({this.widget, required this.settings})
       : super(
             settings: settings,
             pageBuilder: (BuildContext context, Animation<double> animation,

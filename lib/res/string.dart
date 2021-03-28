@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 enum AppLanguage { Vietnamese, English }
 
 class AppString extends StatefulWidget {
-  final Widget child;
+  final Widget? child;
 
-  const AppString({Key key, this.child}) : super(key: key);
+  const AppString({Key? key, this.child}) : super(key: key);
 
   @override
   _AppStringState createState() => _AppStringState();
@@ -15,7 +15,7 @@ class AppString extends StatefulWidget {
     return Provider.of<DefaultStringData>(context);
   }
 
-  static _AppStringState settingsOf(BuildContext context) {
+  static _AppStringState? settingsOf(BuildContext context) {
     final state = context.findAncestorStateOfType<_AppStringState>();
     return state;
   }

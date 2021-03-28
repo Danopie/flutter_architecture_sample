@@ -7,8 +7,8 @@ import 'package:test/test.dart';
 class MockUserRepository extends Mock implements UserRepository {}
 
 void main() {
-  UserRepository userRepository;
-  UserBloc sut;
+  late UserRepository userRepository;
+  late UserBloc sut;
 
   setUp(() {
     userRepository = MockUserRepository();
@@ -47,7 +47,7 @@ void main() {
           emitsDone
         ]));
 
-    await sut.init();
+    sut.init();
     sut.dispose();
   });
 
@@ -86,7 +86,7 @@ void main() {
         ]));
 
     await sut.init();
-    await sut.onUserLogout();
+    sut.onUserLogout();
     sut.dispose();
 
     verify(userRepository.clearUserInfo()).called(1);
@@ -111,7 +111,7 @@ void main() {
         ]));
 
     await sut.init();
-    await sut.onUserLoginSuccessful(userInfo);
+    sut.onUserLoginSuccessful(userInfo);
     sut.dispose();
 
     verify(userRepository.saveUserInfo(userInfo)).called(1);

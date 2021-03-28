@@ -3,12 +3,12 @@ import 'package:primitive_type_parser/primitive_type_parser.dart';
 enum Flavor { Development, Production }
 
 class AppConfig {
-  static AppConfig instance;
+  static late AppConfig instance;
   factory AppConfig() => instance;
 
   final Flavor flavor;
-  final String bannerTitle;
-  final String api;
+  final String? bannerTitle;
+  final String? api;
 
   AppConfig.fromJson(Map<String, dynamic> map, Flavor flavor)
       : bannerTitle = parseString(map["bannerTitle"]),

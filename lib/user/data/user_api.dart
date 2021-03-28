@@ -19,10 +19,10 @@ class UserApiProvider extends ApiProvider {
     }
 
     final loginRes = LoginResponse.fromRawJson(res);
-    if (loginRes.error.isSuccessful) {
-      return loginRes.data;
+    if (loginRes.error!.isSuccessful) {
+      return loginRes.data!;
     } else {
-      throw ServerException(loginRes.error.message);
+      throw ServerException(message: loginRes.error!.message);
     }
   }
 }

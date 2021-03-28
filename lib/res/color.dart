@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 enum AppTheme { Light, Dark }
 
 class AppColor extends StatefulWidget {
-  final Widget child;
+  final Widget? child;
 
-  const AppColor({Key key, this.child}) : super(key: key);
+  const AppColor({Key? key, this.child}) : super(key: key);
 
   @override
   _AppColorState createState() => _AppColorState();
@@ -15,7 +15,7 @@ class AppColor extends StatefulWidget {
     return Provider.of<AppColorData>(context);
   }
 
-  static _AppColorState settingsOf(BuildContext context) {
+  static _AppColorState? settingsOf(BuildContext context) {
     final state = context.findAncestorStateOfType<_AppColorState>();
     return state;
   }
@@ -29,7 +29,7 @@ class _AppColorState extends State<AppColor> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
   }
 
   @override
@@ -45,14 +45,14 @@ class _AppColorState extends State<AppColor> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
     super.dispose();
   }
 
   @override
   void didChangePlatformBrightness() {
     final Brightness brightness =
-        WidgetsBinding.instance.window.platformBrightness;
+        WidgetsBinding.instance!.window.platformBrightness;
 
     setState(() {
       _theme = brightness == Brightness.dark? AppTheme.Dark: AppTheme.Light;
@@ -69,11 +69,11 @@ class _AppColorState extends State<AppColor> with WidgetsBindingObserver {
 
 /// Default asset color - light theme
 class AppColorData {
-  Color get backgroundColor => Colors.white;
+  Color? get backgroundColor => Colors.white;
 }
 
 /// Additional asset color - dark theme
 class DarkAppColorData extends AppColorData {
   @override
-  Color get backgroundColor => Colors.grey[600];
+  Color? get backgroundColor => Colors.grey[600];
 }

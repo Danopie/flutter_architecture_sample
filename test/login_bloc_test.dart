@@ -10,9 +10,9 @@ class MockUserRepository extends Mock implements UserRepository {}
 class MockUserBloc extends Mock implements UserBloc {}
 
 void main() {
-  UserRepository userRepository;
-  UserBloc userBloc;
-  LoginController sut;
+  late UserRepository userRepository;
+  late UserBloc userBloc;
+  late LoginController sut;
 
   setUp(() {
     userRepository = MockUserRepository();
@@ -62,7 +62,7 @@ void main() {
       () async {
     final error = "Login failed";
 
-    when(userRepository.login(any, any))
+    when(userRepository.login(any!, any!))
         .thenAnswer((_) => Future.error(UserError.LoginFailed));
 
     expectLater(
@@ -77,6 +77,6 @@ void main() {
 
     await sut.onUserLogin("", "");
 
-    verifyNever(userBloc.onUserLoginSuccessful(any));
+    verifyNever(userBloc.onUserLoginSuccessful(any!));
   }, timeout: Timeout(Duration(seconds: 5)));
 }

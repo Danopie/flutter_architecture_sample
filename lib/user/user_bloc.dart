@@ -12,7 +12,7 @@ class UserBloc extends StateNotifier<UserState> {
     init();
   }
 
-  void init() async {
+  Future<void> init() async {
     try {
       final data = await _userRepository.getUserInfo();
       state = UserState.loggedIn(userInfo: data);
@@ -34,7 +34,7 @@ class UserBloc extends StateNotifier<UserState> {
 
 @freezed
 abstract class UserState with _$UserState {
-  const factory UserState.loggedIn({UserInfo userInfo}) = UserLoggedIn;
+  const factory UserState.loggedIn({required UserInfo userInfo}) = UserLoggedIn;
   const factory UserState.loading() = UserLoading;
   const factory UserState.notLoggedIn() = UserNotLoggedIn;
 }

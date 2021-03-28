@@ -8,8 +8,8 @@ import 'package:flutter_architecture_sample/core/network/request_status.dart';
 import 'package:primitive_type_parser/primitive_type_parser.dart';
 
 class LoginResponse {
-  final RequestStatus error;
-  final UserInfo data;
+  final RequestStatus? error;
+  final UserInfo? data;
 
   LoginResponse({
     this.error,
@@ -29,15 +29,15 @@ class LoginResponse {
       );
 
   Map<String, dynamic> toJson() => {
-        "error": error == null ? null : error.toJson(),
-        "data": data == null ? null : data.toJson(),
+        "error": error == null ? null : error!.toJson(),
+        "data": data == null ? null : data!.toJson(),
       };
 }
 
 class UserInfo {
-  final String token;
-  final String name;
-  final List<String> genders;
+  final String? token;
+  final String? name;
+  final List<String>? genders;
 
   UserInfo({
     this.token,
@@ -70,9 +70,9 @@ class UserInfo {
 
   factory UserInfo.fromMap(Map<String, dynamic> map) {
     return UserInfo(
-      token: map['token'] as String,
-      name: map['name'] as String,
-      genders: map['genders'] as List<String>,
+      token: map['token'] as String?,
+      name: map['name'] as String?,
+      genders: map['genders'] as List<String>?,
     );
   }
 }

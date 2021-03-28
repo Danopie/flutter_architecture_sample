@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class DeepLinkScreen extends StatefulWidget {
-  final String link;
+  final String? link;
 
-  const DeepLinkScreen({Key key, this.link}) : super(key: key);
+  const DeepLinkScreen({Key? key, this.link}) : super(key: key);
 
   @override
   _DeepLinkScreenState createState() => _DeepLinkScreenState();
@@ -14,7 +14,7 @@ class _DeepLinkScreenState extends State<DeepLinkScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Text(widget.link),
+      child: Text(widget.link!),
     ));
   }
 }

@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
             RaisedButton(
               child: Text("${AppString.of(context).changeThemeButton}"),
               onPressed: () {
-                final settings = AppColor.settingsOf(context);
+                final settings = AppColor.settingsOf(context)!;
                 settings.changeTheme(settings.theme == AppTheme.Light
                     ? AppTheme.Dark
                     : AppTheme.Light);
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
             RaisedButton(
               child: Text("${AppString.of(context).changeLanguageButton}"),
               onPressed: () {
-                final settings = AppString.settingsOf(context);
+                final settings = AppString.settingsOf(context)!;
                 settings.changeTheme(settings.language == AppLanguage.Vietnamese
                     ? AppLanguage.English
                     : AppLanguage.Vietnamese);

@@ -9,7 +9,7 @@ import 'package:uni_links/uni_links.dart';
 part 'deep_link_controller.freezed.dart';
 
 class DeepLinkController extends StateNotifier<DeepLinkState> {
-  StreamSubscription _sub;
+  late StreamSubscription _sub;
 
   DeepLinkController() : super(DeepLinkState.loading()) {
     init();
@@ -60,6 +60,6 @@ class DeepLinkController extends StateNotifier<DeepLinkState> {
 @freezed
 abstract class DeepLinkState with _$DeepLinkState {
   const factory DeepLinkState.loading() = DeepLinkLoading;
-  const factory DeepLinkState.doneLoading({String routeName}) =
+  const factory DeepLinkState.doneLoading({String? routeName}) =
       DeepLinkDoneLoading;
 }

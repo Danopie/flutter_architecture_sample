@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 class RequestStatus {
-  final int status;
-  final String message;
+  final int? status;
+  final String? message;
 
   RequestStatus({
     this.status,
