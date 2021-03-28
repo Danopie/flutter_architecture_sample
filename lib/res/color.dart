@@ -4,25 +4,25 @@ import 'package:provider/provider.dart';
 
 enum AppTheme { Light, Dark }
 
-class AssetColor extends StatefulWidget {
+class AppColor extends StatefulWidget {
   final Widget child;
 
-  const AssetColor({Key key, this.child}) : super(key: key);
+  const AppColor({Key key, this.child}) : super(key: key);
 
   @override
-  _AssetColorState createState() => _AssetColorState();
+  _AppColorState createState() => _AppColorState();
 
-  static AssetColorData of(BuildContext context) {
-    return Provider.of<AssetColorData>(context);
+  static AppColorData of(BuildContext context) {
+    return Provider.of<AppColorData>(context);
   }
 
-  static _AssetColorState settingsOf(BuildContext context) {
-    final state = context.findAncestorStateOfType<_AssetColorState>();
+  static _AppColorState settingsOf(BuildContext context) {
+    final state = context.findAncestorStateOfType<_AppColorState>();
     return state;
   }
 }
 
-class _AssetColorState extends State<AssetColor> with WidgetsBindingObserver {
+class _AppColorState extends State<AppColor> with WidgetsBindingObserver {
   AppTheme _theme = AppTheme.Light;
 
   AppTheme get theme => _theme;
@@ -36,9 +36,9 @@ class _AssetColorState extends State<AssetColor> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final data =
-    _theme == AppTheme.Dark ? DarkAssetColorData() : AssetColorData();
+    _theme == AppTheme.Dark ? DarkAppColorData() : AppColorData();
 
-    return Provider<AssetColorData>.value(
+    return Provider<AppColorData>.value(
       value: data,
       child: widget.child,
     );
@@ -69,12 +69,12 @@ class _AssetColorState extends State<AssetColor> with WidgetsBindingObserver {
 
 
 /// Default asset color - light theme
-class AssetColorData {
+class AppColorData {
   Color get backgroundColor => Colors.white;
 }
 
 /// Additional asset color - dark theme
-class DarkAssetColorData extends AssetColorData {
+class DarkAppColorData extends AppColorData {
   @override
   Color get backgroundColor => Colors.grey[600];
 }

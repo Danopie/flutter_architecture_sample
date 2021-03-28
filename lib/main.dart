@@ -62,8 +62,8 @@ class MyApp extends StatelessWidget {
           builder: (context) => UserBloc(GetIt.I.get<UserRepository>()),
         ),
       ],
-      child: AssetString(
-        child: AssetColor(
+      child: AppString(
+        child: AppColor(
           child: MaterialApp(
             navigatorKey: AppRouter.navigatorKey,
             onGenerateRoute: AppRouter.generateRoute,

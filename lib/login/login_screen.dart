@@ -30,10 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
         return false;
       },
       child: Scaffold(
-        backgroundColor: AssetColor.of(context).backgroundColor,
+        backgroundColor: AppColor.of(context).backgroundColor,
         appBar: AppBar(
           leading: Container(),
-          title: Text(AssetString.of(context).loginText),
+          title: Text(AppString.of(context).loginText),
         ),
         body: BlocListener<LoginBloc, LoginState>(
           listener: (_, bloc, state) {
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: <Widget>[
                     TextField(
                       controller: _usernameTextController,
-                      decoration: InputDecoration(hintText: AssetString.of(context).usernameHintText),
+                      decoration: InputDecoration(hintText: AppString.of(context).usernameHintText),
                     ),
                     Container(
                       height: 12,
@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     TextField(
                       controller: _passwordTextController,
                       obscureText: true,
-                      decoration: InputDecoration(hintText: AssetString.of(context).passwordHintText),
+                      decoration: InputDecoration(hintText: AppString.of(context).passwordHintText),
                     ),
                     Container(
                       height: 12,
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                     if (state is LoginIdle)
                       RaisedButton(
-                        child: Text(AssetString.of(context).loginButtonText),
+                        child: Text(AppString.of(context).loginButtonText),
                         onPressed: () {
                           bloc.onUserLogin(_usernameTextController.text,
                               _passwordTextController.text);

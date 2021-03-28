@@ -3,25 +3,25 @@ import 'package:provider/provider.dart';
 
 enum AppLanguage { Vietnamese, English }
 
-class AssetString extends StatefulWidget {
+class AppString extends StatefulWidget {
   final Widget child;
 
-  const AssetString({Key key, this.child}) : super(key: key);
+  const AppString({Key key, this.child}) : super(key: key);
 
   @override
-  _AssetStringState createState() => _AssetStringState();
+  _AppStringState createState() => _AppStringState();
 
-  static AssetStringData of(BuildContext context) {
-    return Provider.of<AssetStringData>(context);
+  static DefaultStringData of(BuildContext context) {
+    return Provider.of<DefaultStringData>(context);
   }
 
-  static _AssetStringState settingsOf(BuildContext context) {
-    final state = context.findAncestorStateOfType<_AssetStringState>();
+  static _AppStringState settingsOf(BuildContext context) {
+    final state = context.findAncestorStateOfType<_AppStringState>();
     return state;
   }
 }
 
-class _AssetStringState extends State<AssetString> with WidgetsBindingObserver {
+class _AppStringState extends State<AppString> with WidgetsBindingObserver {
   AppLanguage _language = AppLanguage.English;
 
   AppLanguage get language => _language;
@@ -29,9 +29,9 @@ class _AssetStringState extends State<AssetString> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final data =
-    _language == AppLanguage.English ? EnglishStringData() : AssetStringData();
+    _language == AppLanguage.English ? EnglishStringData() : DefaultStringData();
 
-    return Provider<AssetStringData>.value(
+    return Provider<DefaultStringData>.value(
       value: data,
       child: widget.child,
     );
@@ -46,7 +46,7 @@ class _AssetStringState extends State<AssetString> with WidgetsBindingObserver {
 
 
 /// Default asset string - Vietnamese
-class AssetStringData {
+class DefaultStringData {
   String get passwordHintText => "Mật khẩu";
 
   String get welcomeText => "Chào mừng";
@@ -67,7 +67,7 @@ class AssetStringData {
 }
 
 /// Additional asset string - English
-class EnglishStringData extends AssetStringData {
+class EnglishStringData extends DefaultStringData {
   @override
   String get welcomeText => "Welcome";
 

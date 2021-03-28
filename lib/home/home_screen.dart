@@ -29,14 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
       child: BlocWidgetBuilder<HomeBloc, HomeState>(
         builder: (context, bloc, state) {
           final title = state.maybeWhen<String>(
-              orElse: () => "${AssetString.of(context).welcomeText}",
+              orElse: () => "${AppString.of(context).welcomeText}",
               doneLoading: (username) =>
-                  "${AssetString.of(context).welcomeText} ${username}");
+                  "${AppString.of(context).welcomeText} ${username}");
 
           final userLoggedIn = state is HomeDoneLoading;
 
           return Scaffold(
-            backgroundColor: AssetColor.of(context).backgroundColor,
+            backgroundColor: AppColor.of(context).backgroundColor,
             appBar: AppBar(
               title: Text(title),
             ),
@@ -46,9 +46,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   RaisedButton(
-                    child: Text("${AssetString.of(context).changeThemeButton}"),
+                    child: Text("${AppString.of(context).changeThemeButton}"),
                     onPressed: () {
-                      final settings = AssetColor.settingsOf(context);
+                      final settings = AppColor.settingsOf(context);
                       settings.changeTheme(settings.theme == AppTheme.Light
                           ? AppTheme.Dark
                           : AppTheme.Light);
@@ -56,9 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   RaisedButton(
                     child:
-                        Text("${AssetString.of(context).changeLanguageButton}"),
+                        Text("${AppString.of(context).changeLanguageButton}"),
                     onPressed: () {
-                      final settings = AssetString.settingsOf(context);
+                      final settings = AppString.settingsOf(context);
                       settings.changeTheme(
                           settings.language == AppLanguage.Vietnamese
                               ? AppLanguage.English
@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   if (userLoggedIn)
                     RaisedButton(
-                      child: Text("${AssetString.of(context).logoutButton}"),
+                      child: Text("${AppString.of(context).logoutButton}"),
                       onPressed: () {
                         bloc.onUserLogout();
                       },
